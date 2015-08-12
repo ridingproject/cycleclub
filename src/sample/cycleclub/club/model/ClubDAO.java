@@ -62,34 +62,21 @@ public class ClubDAO implements IClubDAO {
 			closeConnection(con);
 		}
 		return club;
-/*		String sql = "select * from cycleclub where ccode=?";
 
-		Connection con = null;
-		try {
-			con = getConnection();
-			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setString(1, cvo.getCcode());
-			ResultSet rs = stmt.executeQuery();
-			cvo.setCcode(rs.getString("ccode"));
-			cvo.setCname(rs.getString("cname"));
-			cvo.setCplace(rs.getString("cplace"));
-			cvo.setCtime(rs.getString("ctime"));
-			cvo.setMid(rs.getString("mid"));
-
-		} catch (Exception e){
-			throw new RuntimeException(e.getMessage());
-		} finally {
-			closeConnection(con);
-		}
-		return cvo;*/
 	}
 
 	public void insertClub(ClubVO cvo) {
 		String sql = "insert into cycleclub values(?,?,?,?,?)";
+		String sql1 = "select ifnull(max(ccode),0)+1 from cycleclub";
 		Connection con = null;
 		try {
 			con = getConnection();
-			PreparedStatement stmt = con.prepareStatement(sql);
+			PreparedStatement stmt = con.prepareStatement(sql1);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next())
+			  cvo.setCcode(rs.getString("ifnull(max(ccode),0)+1"));
+			
+			stmt = con.prepareStatement(sql);
 			stmt.setString(1, cvo.getCcode());
 			stmt.setString(2, cvo.getCname());
 			stmt.setString(3, cvo.getCplace());
@@ -113,7 +100,14 @@ public class ClubDAO implements IClubDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				MemberVO mvo = new MemberVO();
-	
+				mvo.setMcode(rs.getString("mcode"));
+				mvo.setMgpsx(rs.getDouble("mgpsx"));
+				mvo.setMgpsy(rs.getDouble("mgpsy"));
+				mvo.setMid(rs.getString("mid"));
+				mvo.setMjoin(rs.getInt("mjoin"));
+				mvo.setMname(rs.getString("mname"));
+				mvo.setMphone(rs.getString("mphone"));
+				mvo.setMpw(rs.getString("mpw"));
 				mlist.add(mvo);
 			}
 		} catch (Exception e) {
@@ -174,23 +168,23 @@ public class ClubDAO implements IClubDAO {
 		}
 
 	public void updateClub(ClubVO cvo) {
-		 Connection con = null;
-	        String sql = "update cycleclub set cname=?, cplace=?, ctime=?"
-	                + "where mid=?";
-	        try{
-	            con= getConnection();
-	            PreparedStatement pstmt = con.prepareStatement(sql);
-	            pstmt.setString(1, cvo.getCname());
-	            pstmt.setString(2, cvo.getCplace());
-	            pstmt.setString(3, cvo.getCtime());
-	            pstmt.setString(4, cvo.getMid());
-	            pstmt.executeUpdate();
-	             
-	        }catch(SQLException e){
-	            throw new RuntimeException(e.getMessage());
-	        }finally{
-	            closeConnection(con);
-	        }
+		Connection con = null;
+		String sql = "update clubcycle set cname=?, cplace=?, ctime=?"
+				+ "where mid=?";
+		try{
+			con= getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, cvo.getCname());
+			pstmt.setString(2, cvo.getCplace());
+			pstmt.setString(3, cvo.getCtime());
+			pstmt.setString(4, cvo.getMid());
+			pstmt.executeUpdate();
+			
+		}catch(SQLException e){
+			throw new RuntimeException(e.getMessage());
+		}finally{
+			closeConnection(con);
+		}
 	}
 
 	public Connection getConnection() {
