@@ -11,15 +11,15 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8">www
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
+<meta name="description" contenhht="">
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
 
-<title>깃테스트모임 수정</title>
+<title>깃테스모임 수정</title>
 <!-- Custom styles for this template -->
 <link href="navbar.css" rel="stylesheet">
 
