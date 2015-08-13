@@ -10,7 +10,7 @@ import sample.cycleclub.member.model.MemberVO;
  */
 public interface IClubService {
 
-	public ClubVO deatilClub(ClubVO cvo);
+	public ClubVO detailClub(ClubVO cvo);
 
 	public void deleteClub(ClubVO cvo);
 

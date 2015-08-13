@@ -62,7 +62,6 @@ public class ClubDAO implements IClubDAO {
 			closeConnection(con);
 		}
 		return club;
-
 	}
 
 	public void insertClub(ClubVO cvo) {
@@ -168,23 +167,23 @@ public class ClubDAO implements IClubDAO {
 		}
 
 	public void updateClub(ClubVO cvo) {
-		Connection con = null;
-		String sql = "update clubcycle set cname=?, cplace=?, ctime=?"
-				+ "where mid=?";
-		try{
-			con= getConnection();
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, cvo.getCname());
-			pstmt.setString(2, cvo.getCplace());
-			pstmt.setString(3, cvo.getCtime());
-			pstmt.setString(4, cvo.getMid());
-			pstmt.executeUpdate();
-			
-		}catch(SQLException e){
-			throw new RuntimeException(e.getMessage());
-		}finally{
-			closeConnection(con);
-		}
+		 Connection con = null;
+	        String sql = "update cycleclub set cname=?, cplace=?, ctime=?"
+	                + "where mid=?";
+	        try{
+	            con= getConnection();
+	            PreparedStatement pstmt = con.prepareStatement(sql);
+	            pstmt.setString(1, cvo.getCname());
+	            pstmt.setString(2, cvo.getCplace());
+	            pstmt.setString(3, cvo.getCtime());
+	            pstmt.setString(4, cvo.getMid());
+	            pstmt.executeUpdate();
+	             
+	        }catch(SQLException e){
+	            throw new RuntimeException(e.getMessage());
+	        }finally{
+	            closeConnection(con);
+	        }
 	}
 
 	public Connection getConnection() {

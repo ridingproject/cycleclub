@@ -1,7 +1,6 @@
 package sample.cycleclub.club.web;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -12,37 +11,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sample.cycleclub.club.model.ClubDAO;
 import sample.cycleclub.club.model.ClubVO;
+import sample.cycleclub.club.model.IClubDAO;
 import sample.cycleclub.club.service.ClubService;
 import sample.cycleclub.club.service.IClubService;
+import sample.cycleclub.member.model.MemberVO;
 
 @WebServlet("/cycleclub/club/club.do")
 public class CycleClubServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	IClubService service = new ClubService();
+	IClubDAO dao = new ClubDAO();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 입력 양식 요청, 서버로부터 데이터를 가져오는 코드 작성
+		// �엯�젰 �뼇�떇 �슂泥�, �꽌踰꾨줈遺��꽣 �뜲�씠�꽣瑜� 媛��졇�삤�뒗 肄붾뱶 �옉�꽦
 		String action = request.getParameter("action");
 		String url = "/WEB-INF/error.jsp";
 		if("insert".equals(action)){
-			// 모임 등록
+			// 紐⑥엫 �벑濡�
 			request.setAttribute("next", "insert");
 			url = "/WEB-INF/cycleclub/club/insertClub.jsp";
-			HttpSession session=request.getSession(true);/////현재 존재하는 세션값을 얻어온다.
+			HttpSession session=request.getSession(true);/////�쁽�옱 議댁옱�븯�뒗 �꽭�뀡媛믪쓣 �뼸�뼱�삩�떎.
 			session.setAttribute("mid", "masang");///////
 		} else if("update".equals(action)){
-			// 모임 수정
-			 request.setAttribute("next", "update");
-	            String ccodeupdate = request.getParameter("ccode");
-	            int ccode = Integer.parseInt(ccodeupdate);
-	            ClubVO cvo = service.selectClub(ccode);
-	            request.setAttribute("cvo", cvo);
-	            url = "/WEB-INF/cycleclub/club/updateClub.jsp";
+			// 紐⑥엫 �닔�젙
+			request.setAttribute("next", "update");
+			url = "/WEB-INF/cycleclub/club/updateClub.jsp";
 		} else if("delete".equals(action)){
-			// 모임 삭제
-			HttpSession session=request.getSession(true);/////현재 존재하는 세션값을 얻어온다.
+			// 紐⑥엫 �궘�젣
+			HttpSession session=request.getSession(true);/////�쁽�옱 議댁옱�븯�뒗 �꽭�뀡媛믪쓣 �뼸�뼱�삩�떎.
 			session.setAttribute("mid", "masang");//////
 			String mid = (String)session.getAttribute("mid");
 			String ccodestr = request.getParameter("ccode");
@@ -53,26 +52,37 @@ public class CycleClubServlet extends HttpServlet {
 			request.setAttribute("next", "insert");
 			url = "/WEB-INF/cycleclub/club/listClub.jsp";
 		} else if("clublist".equals(action)){
-			// 모임 목록 조회
-			HttpSession session=request.getSession(true);////현재 존재하는 세션값을 얻어온다.
+			// 紐⑥엫 紐⑸줉 議고쉶
+			HttpSession session=request.getSession(true);////�쁽�옱 議댁옱�븯�뒗 �꽭�뀡媛믪쓣 �뼸�뼱�삩�떎.
 			session.setAttribute("mid", "masang");//////
 			ArrayList<ClubVO> clist = service.listClub();
 			request.setAttribute("clist", clist);
 			request.setAttribute("next", "insert");
+			
+			ArrayList<MemberVO> mlist = service.joinClubList();
+			request.setAttribute("mlist", mlist);
+			
+			
 			url = "/WEB-INF/cycleclub/club/listClub.jsp";
 		} else if("joinlist".equals(action)){
-			// 모임 참가회원 조회
+			// 紐⑥엫 李멸��쉶�썝 議고쉶
+			request.setAttribute("next","clublist");
+			request.setAttribute("ccode",request.getParameter("ccode"));
+			ArrayList<MemberVO> mlist = service.joinClubList();
+			request.setAttribute("mlist", mlist);
 			url = "/WEB-INF/cycleclub/club/joinClubList.jsp";
 		} else if("detail".equals(action)){
-			// 모임 상세 조회
+			// 紐⑥엫 �긽�꽭 議고쉶
 			String ccodestr = request.getParameter("ccode");
 			int ccode = Integer.parseInt(ccodestr);
 			ClubVO cvo = service.selectClub(ccode);
 			request.setAttribute("cvo", cvo);
 			url = "/WEB-INF/cycleclub/club/detailClub.jsp";
+		}else if("join".equals(action)){
+			url = "/WEB-INF/cycleclub/club/joinClubList.jsp";
 		} else{
-			// 에러페이지
-			request.setAttribute("message", "잘못 된 액션입니다.");
+			// �뿉�윭�럹�씠吏�
+			request.setAttribute("message", "에러페이지입니다.");
 		}
 		
 		RequestDispatcher disp = request.getRequestDispatcher(url);
@@ -80,12 +90,12 @@ public class CycleClubServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 저장 요청, 서버에 데이터를 전송(저장)하는 코드 작성
+		// ���옣 �슂泥�, �꽌踰꾩뿉 �뜲�씠�꽣瑜� �쟾�넚(���옣)�븯�뒗 肄붾뱶 �옉�꽦
 		request.setCharacterEncoding("utf-8");
 		String action = request.getParameter("action");
 		if ("insert".equals(action)) {
-			// 모임 등록
-			// 데이터 저장 처리
+			// 紐⑥엫 �벑濡�
+			// �뜲�씠�꽣 ���옣 泥섎━
 			ClubVO cvo = new ClubVO();
 
 			String ccode = request.getParameter("ccode");
@@ -104,17 +114,17 @@ public class CycleClubServlet extends HttpServlet {
 			
 			response.sendRedirect("club.do?action=clublist");
 		} else if ("update".equals(action)) {
-			// 모임 수정
-			 String cname = request.getParameter("cname");
-	            String cplace = request.getParameter("cplace");
-	            String ccode = request.getParameter("ccode");
-	            String mid = request.getParameter("mid");
-	            String ctime = request.getParameter("ctime");
-//	          SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//	          Date to = transFormat.parse(request.getParameter("ctime"));
-	            ClubVO updatevo = new ClubVO(ccode, cname, cplace, ctime, mid);
-	            service.updateClub(updatevo);
-	            response.sendRedirect("club.do?action=clublist");
+			// 紐⑥엫 �닔�젙
+			String cname = request.getParameter("cname");
+			String cplace = request.getParameter("cplace");
+			String ccode = request.getParameter("ccode");
+			String mid = request.getParameter("mid");
+			String ctime = request.getParameter("ctime");
+//			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//			Date to = transFormat.parse(request.getParameter("ctime"));
+			ClubVO updatevo = new ClubVO(ccode, cname, cplace, ctime, mid);
+			service.updateClub(updatevo);
+			response.sendRedirect("list.do");
 		}
 		
 	}
