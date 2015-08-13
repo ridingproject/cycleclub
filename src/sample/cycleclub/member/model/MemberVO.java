@@ -1,14 +1,9 @@
 package sample.cycleclub.member.model;
 
 
-/**
- * @author LSH
- * @version 1.0
- * @created 09-8-2015 ���� 11:12:58
- */
 public class MemberVO {
 
-	private int mcode;
+	private String mcode;
 	private double mgpsx;
 	private double mgpsy;
 	private String mid;
@@ -21,7 +16,7 @@ public class MemberVO {
 	
 	}
 	
-	public MemberVO(int mcode, double mgpsx, double mgpsy, String mid, int mjoin, String mname, String mphone,
+	public MemberVO(String mcode, double mgpsx, double mgpsy, String mid, int mjoin, String mname, String mphone,
 			String mpw) {
 		super();
 		this.mcode = mcode;
@@ -33,10 +28,10 @@ public class MemberVO {
 		this.mphone = mphone;
 		this.mpw = mpw;
 	}
-	public int getMcode() {
+	public String getMcode() {
 		return mcode;
 	}
-	public void setMcode(int mcode) {
+	public void setMcode(String mcode) {
 		this.mcode = mcode;
 	}
 	public double getMgpsx() {

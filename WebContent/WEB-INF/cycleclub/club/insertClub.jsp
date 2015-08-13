@@ -10,7 +10,6 @@
 <body>
 <h1>Club Regist</h1>
 <form action="club.do" method="post">
-모임코드: <input type="text" name="ccode"><br>
 모임이름: <input type="text" name="cname"><br>
 모임장소: <input type="text" name="cplace"><br>
 모임시간: <input type="text" name="ctime"><br>
