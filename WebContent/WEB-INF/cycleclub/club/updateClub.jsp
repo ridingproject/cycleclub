@@ -19,7 +19,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
 
-<title>모임 수정_민지</title>
+<title>모임 수정_</title>
 <!-- Custom styles for this template -->
 <link href="navbar.css" rel="stylesheet">
 
