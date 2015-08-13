@@ -104,7 +104,7 @@
     <br>
     
     <button type="submit" class="btn btn-default">저장</button>
-   <button type="submit" class="btn btn-default">취소</button>
+   <button type="reset" class="btn btn-default">취소</button>
   </form>
 
 

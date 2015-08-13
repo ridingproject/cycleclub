@@ -10,6 +10,6 @@ public interface IMemberDAO {
 
 	public void joinMember(MemberVO mvo);
 
-	public void loginMember(MemberVO mvo);
+	public String loginMember(MemberVO mvo);
 
 }

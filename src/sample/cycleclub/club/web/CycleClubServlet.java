@@ -33,16 +33,13 @@ public class CycleClubServlet extends HttpServlet {
 			// 紐⑥엫 �벑濡�
 			request.setAttribute("next", "insert");
 			url = "/WEB-INF/cycleclub/club/insertClub.jsp";
-			HttpSession session=request.getSession(true);/////�쁽�옱 議댁옱�븯�뒗 �꽭�뀡媛믪쓣 �뼸�뼱�삩�떎.
-			session.setAttribute("mid", "masang");///////
 		} else if("update".equals(action)){
 			// 紐⑥엫 �닔�젙
 			request.setAttribute("next", "update");
 			url = "/WEB-INF/cycleclub/club/updateClub.jsp";
 		} else if("delete".equals(action)){
 			// 紐⑥엫 �궘�젣
-			HttpSession session=request.getSession(true);/////�쁽�옱 議댁옱�븯�뒗 �꽭�뀡媛믪쓣 �뼸�뼱�삩�떎.
-			session.setAttribute("mid", "masang");//////
+			HttpSession session=request.getSession(true);
 			String mid = (String)session.getAttribute("mid");
 			String ccodestr = request.getParameter("ccode");
 			ClubVO cvo = new ClubVO(ccodestr,null,null,null,mid);
@@ -53,8 +50,6 @@ public class CycleClubServlet extends HttpServlet {
 			url = "/WEB-INF/cycleclub/club/listClub.jsp";
 		} else if("clublist".equals(action)){
 			// 紐⑥엫 紐⑸줉 議고쉶
-			HttpSession session=request.getSession(true);////�쁽�옱 議댁옱�븯�뒗 �꽭�뀡媛믪쓣 �뼸�뼱�삩�떎.
-			session.setAttribute("mid", "masang");//////
 			ArrayList<ClubVO> clist = service.listClub();
 			request.setAttribute("clist", clist);
 			request.setAttribute("next", "insert");

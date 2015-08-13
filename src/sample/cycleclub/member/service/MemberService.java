@@ -17,8 +17,7 @@ public class MemberService implements IMemberService {
 		mdao.joinMember(mvo);
 	}
 
-	public void loginMember(MemberVO mvo){
-		mdao.loginMember(mvo);
+	public String loginMember(MemberVO mvo){
+		return mdao.loginMember(mvo);
 	}
-
 }
