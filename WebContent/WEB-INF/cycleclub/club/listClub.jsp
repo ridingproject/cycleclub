@@ -78,10 +78,11 @@
 		</nav>
 	</div>
 	<!-- 컨테이너 -->
+	<br>
 
 <c:if test="${!empty sessionScope.mid}">
 <form class="bs-example bs-example-form" data-example-id="simple-input-groups">
-<table border="1">
+<table class="table table-striped" border="1">
 	<tr>
 		<td width="100" align="center">  순       번  </td>
 		<td width="200" align="center">    모        임        명    </td>
@@ -101,7 +102,7 @@
 						<%i++; %>
 					</c:if>
 				</c:forEach>-->
-				<td align="center"><a href="club.do?action=join"><%=i%></a></td>
+				<td align="center"><a href="club.do?action=joinlist&ccode=${clist.ccode}"><%=i%></a></td>
 				<!-- <td align="center"><a href="club.do?action=update&ccode=${clist.ccode}">[수정]</a>
 				<a href="club.do?action=delete&ccode=${clist.ccode}">[삭제]</a></td>-->
 			</tr>

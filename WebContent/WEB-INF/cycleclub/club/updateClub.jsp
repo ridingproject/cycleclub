@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -11,15 +12,15 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <html>
 <head>
-<meta charset="utf-8">www
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" contenhht="">
+<meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
 
-<title>깃테스모임 수정</title>
+<title>모임 수정</title>
 <!-- Custom styles for this template -->
 <link href="navbar.css" rel="stylesheet">
 
@@ -84,17 +85,17 @@
     <input type="hidden" class="form-control" name="ccode" id="ccode">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">모임이름</span>
-      <input type="text" class="form-control" name="cname" id="cname" value="${cvo.cname}" aria-describedby="basic-addon1">
+      <input type="text" class="form-control" name="cname" id="cname"aria-describedby="basic-addon1">
     </div>
     <br>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">모임장소</span>
-      <input type="text" class="form-control" name="cplace" id="cplace" value="${cvo.cplace}" aria-describedby="basic-addon1">
+      <input type="text" class="form-control" name="cplace" id="cplace"aria-describedby="basic-addon1">
     </div>
     <br>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">모임시간</span>
-      <input type="text" class="form-control" name="ctime" id="ctime" value="${cvo.ctime}" aria-describedby="basic-addon1">
+      <input type="text" class="form-control" name="ctime" id="ctime"aria-describedby="basic-addon1">
     </div>
     <br>
     
