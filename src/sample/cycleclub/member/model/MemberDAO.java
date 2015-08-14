@@ -22,27 +22,29 @@ public class MemberDAO implements IMemberDAO {
 
 	public void joinMember(MemberVO mvo){
 		String sql1 = "select count(*) as cnt from cyclemember where mid=?";
-		//String sql2 = "insert into cyclemember values(?,?,?,?,?,?,?,?)";
-		String sql3 = "insert int cycleclub(mname,mid,mpw,mphone,mjoin) value(?,?,?,?,?)";
+		String sql2 = "insert into cyclemember values(?,?,?,?,?,?,?,?)";
 		Connection con = null;
 		try {
 			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql1);
+			stmt.setString(1, mvo.getMid());
 			ResultSet rs = stmt.executeQuery();
 			int cnt = 0;
-			stmt.setString(1, mvo.getMname());
 			while(rs.next()){
 				cnt = rs.getInt("cnt");
 			}
 			if(cnt!=0){
 				return;
 			}else{
-				stmt = con.prepareStatement(sql3);
+				stmt = con.prepareStatement(sql2);
 				stmt.setString(1, mvo.getMname());
 				stmt.setString(2, mvo.getMid());
 				stmt.setString(3, mvo.getMpw());
 				stmt.setString(4, mvo.getMphone());
-				stmt.setString(5, Integer.toString(mvo.getMjoin()));
+				stmt.setDouble(5, 0);
+				stmt.setDouble(6, 0);
+				stmt.setString(7, "0");
+				stmt.setString(8, null);
 				stmt.executeUpdate();	
 			}
 		} catch (SQLException e) {
