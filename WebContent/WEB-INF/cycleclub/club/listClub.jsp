@@ -117,7 +117,7 @@
 <br><br><br>
 회원에게만 제공되는 서비스입니다.
 <br>
- [<a href="/cycleclub/member/member.do?action=login"> 여  기 </a>]를 클릭하여 로그인후 이용하실 수 있습니다.
+ [<a href="/CycleClub/cycleclub/member/member.do?action=login"> 여  기 </a>]를 클릭하여 로그인후 이용하실 수 있습니다.
 </c:if>
 
 
