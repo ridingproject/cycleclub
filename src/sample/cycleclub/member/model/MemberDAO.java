@@ -22,7 +22,7 @@ public class MemberDAO implements IMemberDAO {
 
 	public void joinMember(MemberVO mvo){
 		String sql1 = "select count(*) as cnt from cyclemember where mid=?";
-		String sql2 = "insert into cyclemember values(?,?,?,?,?,?,?,?)";
+		//String sql2 = "insert into cyclemember values(?,?,?,?,?,?,?,?)";
 		String sql3 = "insert int cycleclub(mname,mid,mpw,mphone,mjoin) value(?,?,?,?,?)";
 		Connection con = null;
 		try {
@@ -31,12 +31,12 @@ public class MemberDAO implements IMemberDAO {
 			ResultSet rs = stmt.executeQuery();
 			int cnt = 0;
 			stmt.setString(1, mvo.getMname());
-			if(rs.next()){
+			while(rs.next()){
 				cnt = rs.getInt("cnt");
 			}
 			if(cnt!=0){
 				return;
-			}/*else{
+			}else{
 				stmt = con.prepareStatement(sql3);
 				stmt.setString(1, mvo.getMname());
 				stmt.setString(2, mvo.getMid());
@@ -44,7 +44,7 @@ public class MemberDAO implements IMemberDAO {
 				stmt.setString(4, mvo.getMphone());
 				stmt.setString(5, Integer.toString(mvo.getMjoin()));
 				stmt.executeUpdate();	
-			}*/
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {
@@ -63,7 +63,7 @@ public class MemberDAO implements IMemberDAO {
 			stmt.setString(1, mvo.getMid());
 			ResultSet rs = stmt.executeQuery();
 			int cnt = 0;
-			if(rs.next()){
+			while(rs.next()){
 				cnt = rs.getInt("cnt");
 			}
 			if(cnt!=1) {
