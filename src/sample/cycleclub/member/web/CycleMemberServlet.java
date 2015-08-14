@@ -69,8 +69,11 @@ public class CycleMemberServlet extends HttpServlet {
 			mvo.setMpw(mpw);
 
 			String login = service.loginMember(mvo);
-			if(login==null){//이부분 아이디 DB에 없을경우 처리하는거 내일 다시 생각해봐야할듯.....
-				RequestDispatcher disp = request.getRequestDispatcher("member.do?action=join");
+			
+			if("error".equals(login)){//이부분 아이디 DB에 없을경우 처리하는거 내일 다시 생각해봐야할듯.....
+				System.out.println("Error!!");
+				request.setAttribute("message", "아이디가 다릅니다.");
+				RequestDispatcher disp = request.getRequestDispatcher("member.do?action=login");
 				disp.forward(request, response);
 			}else{
 				if(login.equals(mpw)){
@@ -80,7 +83,7 @@ public class CycleMemberServlet extends HttpServlet {
 					response.sendRedirect("/CycleClub/cycleclub/club/club.do?action=clublist");
 				}else{
 					request.setAttribute("message", "비밀번호가 다릅니다.");
-					RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/cyclemember/member/joinMember.jsp");
+					RequestDispatcher disp = request.getRequestDispatcher("member.do?action=join");
 					disp.forward(request, response);
 				}
 			}

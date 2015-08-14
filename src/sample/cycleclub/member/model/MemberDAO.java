@@ -21,20 +21,30 @@ public class MemberDAO implements IMemberDAO {
 	}
 
 	public void joinMember(MemberVO mvo){
-		String sql = "insert into cyclemember values(?,?,?,?,?,?,?,?)";
+		String sql1 = "select count(*) as cnt from cyclemember where mid=?";
+		String sql2 = "insert into cyclemember values(?,?,?,?,?,?,?,?)";
+		String sql3 = "insert int cycleclub(mname,mid,mpw,mphone,mjoin) value(?,?,?,?,?)";
 		Connection con = null;
 		try {
 			con = getConnection();
-			PreparedStatement stmt = con.prepareStatement(sql);
+			PreparedStatement stmt = con.prepareStatement(sql1);
+			ResultSet rs = stmt.executeQuery();
+			int cnt = 0;
 			stmt.setString(1, mvo.getMname());
-			stmt.setString(2, mvo.getMid());
-			stmt.setString(3, mvo.getMpw());
-			stmt.setString(4, mvo.getMphone());
-			stmt.setDouble(5, 0);
-			stmt.setDouble(6, 0);
-			stmt.setString(7, mvo.getMjoin()+"");
-			stmt.setString(8, null);
-			stmt.executeUpdate();
+			if(rs.next()){
+				cnt = rs.getInt("cnt");
+			}
+			if(cnt!=0){
+				return;
+			}/*else{
+				stmt = con.prepareStatement(sql3);
+				stmt.setString(1, mvo.getMname());
+				stmt.setString(2, mvo.getMid());
+				stmt.setString(3, mvo.getMpw());
+				stmt.setString(4, mvo.getMphone());
+				stmt.setString(5, Integer.toString(mvo.getMjoin()));
+				stmt.executeUpdate();	
+			}*/
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {
@@ -43,36 +53,48 @@ public class MemberDAO implements IMemberDAO {
 	}
 
 	public String loginMember(MemberVO mvo){
-		String sql = "select * from cyclemember where mid=?";
+		String sql1 = "select count(*) as cnt from cyclemember where mid=?";
+		String sql2 = "select * from cyclemember where mid=?";
 		Connection con = null;
+		String pw = null;
 		try {
 			con = getConnection();
-			PreparedStatement stmt = con.prepareStatement(sql);
+			PreparedStatement stmt = con.prepareStatement(sql1);
 			stmt.setString(1, mvo.getMid());
 			ResultSet rs = stmt.executeQuery();
-			String pw = null;
+			int cnt = 0;
 			if(rs.next()){
-				pw = rs.getString("mpw");
+				cnt = rs.getInt("cnt");
 			}
-			return pw;
+			if(cnt!=1) {
+				return "error";
+			}else{
+				stmt = con.prepareStatement(sql2);
+				stmt.setString(1, mvo.getMid());
+				rs = stmt.executeQuery();
+				if(rs.next()){
+					pw = rs.getString("mpw");
+				}
+			}
 		} catch (Exception e) {
-			return "error";
+			new RuntimeException(e.getMessage());
 		} finally {
 			closeConnection(con);
 		}
+		return pw;
 	}
-	
+
 	public Connection getConnection() {
-	    DataSource ds = null; //javax.sql.DataSource
-	    Connection con = null;
-	    try{
-	        Context ctx = new InitialContext();
-	        ds = (DataSource)ctx.lookup("java:comp/env/jdbc/MariaDB");
-	        con = ds.getConnection();
-	    }catch(Exception e){
-	        e.printStackTrace();
-	    }
-	    return con;
+		DataSource ds = null; //javax.sql.DataSource
+		Connection con = null;
+		try{
+			Context ctx = new InitialContext();
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/MariaDB");
+			con = ds.getConnection();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return con;
 	}
 
 	public void closeConnection(Connection con) {
