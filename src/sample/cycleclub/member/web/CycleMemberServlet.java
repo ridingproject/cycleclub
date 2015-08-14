@@ -25,7 +25,7 @@ public class CycleMemberServlet extends HttpServlet {
 		// 입력 양식 요청, 서버로부터 데이터를 가져오는 코드 작성
 
 		String action = request.getParameter("action");
-		String url = "";
+		String url = "/WEB-INF/cycleclub/member/loginMember.jsp";
 
 		if("join".equals(action)){
 			// 회원가입
