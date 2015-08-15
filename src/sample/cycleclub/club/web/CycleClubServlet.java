@@ -72,6 +72,9 @@ public class CycleClubServlet extends HttpServlet {
 			int ccode = Integer.parseInt(ccodestr);
 			ClubVO cvo = service.selectClub(ccode);
 			request.setAttribute("cvo", cvo);
+			ArrayList<MemberVO> mlist = service.joinClubList();
+			request.setAttribute("mlist", mlist);
+			request.setAttribute("next", "update");
 			url = "/WEB-INF/cycleclub/club/detailClub.jsp";
 		}else if("join".equals(action)){
 			// 모임 참가
