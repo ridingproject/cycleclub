@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
@@ -78,6 +79,7 @@
       </nav>
    </div>
    <!-- 컨테이너 -->
+   <c:if test="${!empty sessionScope.mid}">
  <form action="club.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups">
     <input type="hidden" class="form-control" name="mid" id="mid">
     <input type="hidden" name="action" value="${next}">
@@ -106,7 +108,14 @@
     <button type="submit" class="btn btn-default">저장</button>
    <button type="reset" class="btn btn-default">취소</button>
   </form>
+</c:if>
 
+<c:if test="${empty sessionScope.mid}">
+<br><br><br>
+회원에게만 제공되는 서비스입니다.
+<br>
+ [<a href="/CycleClub/cycleclub/member/member.do?action=login"> 여  기 </a>]를 클릭하여 로그인후 이용하실 수 있습니다.
+</c:if>
 
    <!--       Main component for a primary marketing message or call to action
       <div class="jumbotron">

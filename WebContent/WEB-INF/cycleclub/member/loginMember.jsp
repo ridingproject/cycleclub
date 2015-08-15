@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
@@ -18,6 +19,14 @@
 </head>
 <body>
 <h1>CycleClub에 오시것을 환영합니다</h1>
+
+<input id="mm" value="${msg}" type="hidden">
+ 
+   <script>
+      var dd = document.getElementById("mm").value;
+      if (dd != '') {
+         alert("" + dd + "");
+      }</script>
 <form action="member.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups">
     <input type="hidden" name="action" value="${next}">
 
@@ -28,7 +37,7 @@
     <br>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">비밀번호</span>
-      <input type="text" class="form-control" name="mpw" id="mpw" aria-describedby="basic-addon1" placeholder="비밀번호를 입력하세요" >
+      <input type="password" class="form-control" name="mpw" id="mpw" aria-describedby="basic-addon1" placeholder="비밀번호를 입력하세요" >
     </div>
     <br>
     

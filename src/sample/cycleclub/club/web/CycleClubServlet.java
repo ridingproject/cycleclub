@@ -101,7 +101,8 @@ public class CycleClubServlet extends HttpServlet {
 			String cname = request.getParameter("cname");
 			String cplace = request.getParameter("cplace");
 			String ctime = request.getParameter("ctime");
-			String mid = request.getParameter("mid");
+			HttpSession session = request.getSession(true);
+			String mid = (String) session.getAttribute("mid");
 			/*
 			 * String time = request.getParameter("ctime"); SimpleDateFormat
 			 * transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); Date

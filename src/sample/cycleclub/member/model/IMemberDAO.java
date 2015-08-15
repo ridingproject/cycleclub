@@ -8,7 +8,7 @@ package sample.cycleclub.member.model;
  */
 public interface IMemberDAO {
 
-	public void joinMember(MemberVO mvo);
+	public boolean joinMember(MemberVO mvo);
 
 	public String loginMember(MemberVO mvo);
 

@@ -17,6 +17,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<input id="mm" value="${msg}" type="hidden">
+ 
+   <script>
+      var dd = document.getElementById("mm").value;
+      if (dd != '') {
+         alert("" + dd + "");
+      }</script>
 <form action="member.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups">
     <input type="hidden" name="action" value="${next}">
     <div class="input-group">
@@ -31,7 +38,7 @@
     <br>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">비밀번호</span>
-      <input type="text" class="form-control" name="mpw" id="mpw" aria-describedby="basic-addon1">
+      <input type="password" class="form-control" name="mpw" id="mpw" aria-describedby="basic-addon1">
     </div>
     <br>
     <div class="input-group">

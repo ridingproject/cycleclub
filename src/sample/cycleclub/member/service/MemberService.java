@@ -13,8 +13,8 @@ public class MemberService implements IMemberService {
 
 	public IMemberDAO mdao = new MemberDAO();
 
-	public void joinMember(MemberVO mvo){
-		mdao.joinMember(mvo);
+	public boolean joinMember(MemberVO mvo){
+		return mdao.joinMember(mvo);
 	}
 
 	public String loginMember(MemberVO mvo){

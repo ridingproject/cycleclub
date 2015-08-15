@@ -20,7 +20,7 @@ public class MemberDAO implements IMemberDAO {
 
 	}
 
-	public void joinMember(MemberVO mvo){
+	public boolean joinMember(MemberVO mvo){
 		String sql1 = "select count(*) as cnt from cyclemember where mid=?";
 		String sql2 = "insert into cyclemember values(?,?,?,?,?,?,?,?)";
 		Connection con = null;
@@ -34,7 +34,7 @@ public class MemberDAO implements IMemberDAO {
 				cnt = rs.getInt("cnt");
 			}
 			if(cnt!=0){
-				return;
+				return false;
 			}else{
 				stmt = con.prepareStatement(sql2);
 				stmt.setString(1, mvo.getMname());
@@ -45,7 +45,8 @@ public class MemberDAO implements IMemberDAO {
 				stmt.setDouble(6, 0);
 				stmt.setString(7, "0");
 				stmt.setString(8, null);
-				stmt.executeUpdate();	
+				stmt.executeUpdate();
+				return true;
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());

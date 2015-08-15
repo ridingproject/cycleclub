@@ -26,7 +26,8 @@ public class CycleMemberServlet extends HttpServlet {
 
 		String action = request.getParameter("action");
 		String url = "/WEB-INF/cycleclub/member/loginMember.jsp";
-
+		request.setAttribute("next", "login");
+		
 		if("join".equals(action)){
 			// 회원가입
 			request.setAttribute("next", "join");
@@ -55,11 +56,18 @@ public class CycleMemberServlet extends HttpServlet {
 			String mid = request.getParameter("mid");
 			String mpw = request.getParameter("mpw");
 			String mphone = request.getParameter("mphone");
-						
+
 			mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw);
-			service.joinMember(mvo);
-			request.setAttribute("next", "join");
-			response.sendRedirect("member.do?action=login");
+			boolean join = service.joinMember(mvo);
+			if(join){
+				request.setAttribute("next", "join");
+				response.sendRedirect("member.do?action=login");
+			}else{
+				request.setAttribute("msg", "동일한 아이디가 존재합니다.");
+				request.setAttribute("next", "join");
+				RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/cycleclub/member/joinMember.jsp");
+				disp.forward(request, response);	
+			}
 		}else if("login".equals(action)){
 			String mid = request.getParameter("mid");
 			String mpw = request.getParameter("mpw");
@@ -69,10 +77,10 @@ public class CycleMemberServlet extends HttpServlet {
 			mvo.setMpw(mpw);
 
 			String login = service.loginMember(mvo);
-			
-			if("error".equals(login)){//이부분 아이디 DB에 없을경우 처리하는거 내일 다시 생각해봐야할듯.....
-				System.out.println("Error!!");
-				request.setAttribute("message", "아이디가 다릅니다.");
+
+			if("error".equals(login)){
+				//System.out.println("Error!!");
+				request.setAttribute("msg", "아이디가 다릅니다.");
 				request.setAttribute("next", "login");
 				RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/cycleclub/member/loginMember.jsp");
 				disp.forward(request, response);
@@ -83,8 +91,9 @@ public class CycleMemberServlet extends HttpServlet {
 					session.setAttribute("mid", mid);
 					response.sendRedirect("/CycleClub/cycleclub/club/club.do?action=clublist");
 				}else{
-					request.setAttribute("message", "비밀번호가 다릅니다.");
-					RequestDispatcher disp = request.getRequestDispatcher("member.do?action=login");
+					request.setAttribute("msg", "비밀번호가 다릅니다.");
+					request.setAttribute("next", "login");
+					RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/cycleclub/member/loginMember.jsp");
 					disp.forward(request, response);
 				}
 			}
