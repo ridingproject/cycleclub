@@ -68,33 +68,36 @@
 	
 	
 	<h1>모임 상세조회</h1><br>
-<table border="1" width="800px" class="table table-striped">
-<form action="club.do" method="get">
-	 <tr>
-      <td align="center" width="76">모임코드</td>
-      <td width="319">${cvo.ccode}</td>
-     </tr>
-	 <tr>
-      <td align="center" width="76">모임이름</td>
-      <td width="319">${cvo.cname}</td>
-     </tr>
-	 <tr>
-      <td align="center" width="76">모임장소</td>
-      <td width="319">${cvo.cplace}</td>
-     </tr>
-	 <tr>
-      <td align="center" width="76">모임시간</td>
-      <td width="319">${cvo.ctime}</td> 
-     </tr>
-	 <tr>
-      <td align="center" width="76">주최자</td>
-      <td width="319">${cvo.mid}</td>
-     </tr>
-</form>
-	<!--  
-	<td>[<a href="club.do?action=update&ccode=${cvo.ccode}">모임 참가</a>]
-	[<a href="club.do?action=delete&ccode=${cvo.ccode}">모임 취소</a>]</td>
-	바꿔야함 버튼 -->
-</table>
+
+	<form action="club.do" method="get">
+		<table border="1" width="800px" class="table table-striped">
+			<tr>
+				<td align="center" width="76">모임코드</td>
+				<td width="319">${cvo.ccode}</td>
+			</tr>
+			<tr>
+				<td align="center" width="76">모임이름</td>
+				<td width="319">${cvo.cname}</td>
+			</tr>
+			<tr>
+				<td align="center" width="76">모임장소</td>
+				<td width="319">${cvo.cplace}</td>
+			</tr>
+			<tr>
+				<td align="center" width="76">모임시간</td>
+				<td width="319">${cvo.ctime}</td>
+			</tr>
+			<tr>
+				<td align="center" width="76">주최자</td>
+				<td width="319">${cvo.mid}</td>
+			</tr>
+		</table>
+		<button type="submit" class="btn btn-default" onclick="javascript:history.back(-1)">수정</button>
+		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">모임 참여</button>
+		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">모임 취소</button>
+		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">목록으로</button>
+		<!-- javascript:history.back(-1)는 Backspace와 같은 것 (뒤로가기) -->
+	</form>
+
 </body>
 </html>

@@ -30,15 +30,15 @@ public class CycleClubServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		String url = "/WEB-INF/cycleclub/club/listClub.jsp";
 		if("insert".equals(action)){
-			// 紐⑥엫 �벑濡�
+			// 모임 입력
 			request.setAttribute("next", "insert");
 			url = "/WEB-INF/cycleclub/club/insertClub.jsp";
 		} else if("update".equals(action)){
-			// 紐⑥엫 �닔�젙
+			// 모임 수정
 			request.setAttribute("next", "update");
 			url = "/WEB-INF/cycleclub/club/updateClub.jsp";
 		} else if("delete".equals(action)){
-			// 紐⑥엫 �궘�젣
+			// 모임 삭제
 			HttpSession session=request.getSession(true);
 			String mid = (String)session.getAttribute("mid");
 			String ccodestr = request.getParameter("ccode");
@@ -49,7 +49,7 @@ public class CycleClubServlet extends HttpServlet {
 			request.setAttribute("next", "insert");
 			url = "/WEB-INF/cycleclub/club/listClub.jsp";
 		} else if("clublist".equals(action)){
-			// 紐⑥엫 紐⑸줉 議고쉶
+			// 모임 목록
 			ArrayList<ClubVO> clist = service.listClub();
 			request.setAttribute("clist", clist);
 			request.setAttribute("next", "insert");
@@ -60,20 +60,21 @@ public class CycleClubServlet extends HttpServlet {
 			
 			url = "/WEB-INF/cycleclub/club/listClub.jsp";
 		} else if("joinlist".equals(action)){
-			// 紐⑥엫 李멸��쉶�썝 議고쉶
+			// 모임 참가 리스트
 			request.setAttribute("next","clublist");
 			request.setAttribute("ccode",request.getParameter("ccode"));
 			ArrayList<MemberVO> mlist = service.joinClubList();
 			request.setAttribute("mlist", mlist);
 			url = "/WEB-INF/cycleclub/club/joinClubList.jsp";
 		} else if("detail".equals(action)){
-			// 紐⑥엫 �긽�꽭 議고쉶
+			// 모임 상세내용
 			String ccodestr = request.getParameter("ccode");
 			int ccode = Integer.parseInt(ccodestr);
 			ClubVO cvo = service.selectClub(ccode);
 			request.setAttribute("cvo", cvo);
 			url = "/WEB-INF/cycleclub/club/detailClub.jsp";
 		}else if("join".equals(action)){
+			// 모임 참가
 			url = "/WEB-INF/cycleclub/club/joinClubList.jsp";
 		} else{
 			// �뿉�윭�럹�씠吏�

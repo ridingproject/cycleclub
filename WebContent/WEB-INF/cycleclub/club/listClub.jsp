@@ -88,7 +88,7 @@
 		<td width="200" align="center">    모        임        명    </td>
 		<td width="200" align="center">    장       소    </td>
 		<td width="200" align="center">    시       간    </td>
-		<td width="80" align="center">  참여 인원 </td>
+		<td width="100" align="center">  참여 인원 </td>
 		<!--  <td width="200" align="center">    기       타    </tr>-->
 	<c:forEach var="clist" items="${clist}">
 	<%int i=0; %>

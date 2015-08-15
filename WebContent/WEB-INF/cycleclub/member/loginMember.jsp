@@ -32,8 +32,8 @@
     </div>
     <br>
     
-    <button type="submit" class="btn btn-default" OnClick="">로그인</button>
-   <button type="reset" class="btn btn-default" onclick="">회원가입</button>
+    <button type="submit" class="btn btn-default" >로그인</button>
+   <button type="reset" class="btn btn-default" onclick="joinMember.jsp">회원가입</button>
   </form>
 </body>
 </html>

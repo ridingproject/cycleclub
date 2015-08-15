@@ -58,7 +58,7 @@ public class CycleMemberServlet extends HttpServlet {
 						
 			mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw);
 			service.joinMember(mvo);
-
+			request.setAttribute("next", "join");
 			response.sendRedirect("member.do?action=login");
 		}else if("login".equals(action)){
 			String mid = request.getParameter("mid");
