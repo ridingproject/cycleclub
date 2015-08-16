@@ -70,7 +70,6 @@
 	<h1>모임 상세조회</h1><br>
 
 	<form action="club.do" method="get">
-		<input type="text" class="form-control" name="ccode" id="ccode" value="${cvo.ccode }">
 		<input type="hidden" name="action" value="${next}">
 		<table border="1" width="800px" class="table table-striped">
 			<tr>
