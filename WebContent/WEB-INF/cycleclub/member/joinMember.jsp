@@ -17,6 +17,46 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script type="text/javascript">
+  	function loginCheck(){
+  		var name = document.all.mname.value;
+  		var id = document.all.mid.value;
+  		var pw = document.all.mpw.value;
+  		var pwR = document.all.mpwR.value;
+  		var phone = document.all.mphone.value;
+  		
+  		if((name.length==0)||name==""){
+  			alert("이름을 입력하세요.");
+  			document.all.mname.focus();
+  			return false;
+  		}else if((id.length==0)||id==""){
+  			alert("아이디를 입력하세요.");
+  			document.all.mid.focus();
+  			return false;
+  		}else if((pw.length==0)||pw==""){
+  			alert("비밀번호를 입력하세요.");
+  			document.all.mpw.focus();
+  			return false;
+  		}else if((pwR.length==0)||pwR==""){
+  			alert("비밀번호를 입력하세요.");
+  			document.all.mpwR.focus();
+  			return false;
+  		}else if((phone.length==0)||phone==""){
+  			alert("전화번호를 입력하세요.");
+  			document.all.mphone.focus();
+  			return false;
+  		}else{
+  			if(pw!=pwR){
+  				alert("비밀번호가 다릅니다.");
+  				document.all.mpwR.value="";
+  				return false;
+  			}
+  			return true;
+  		}
+  	}
+  
+  </script>
+
 <input id="mm" value="${msg}" type="hidden">
  
    <script>
@@ -24,7 +64,7 @@
       if (dd != '') {
          alert("" + dd + "");
       }</script>
-<form action="member.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups">
+<form action="member.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups" onSubmit="return loginCheck();">
     <input type="hidden" name="action" value="${next}">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">이름</span>
@@ -39,6 +79,11 @@
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">비밀번호</span>
       <input type="password" class="form-control" name="mpw" id="mpw" aria-describedby="basic-addon1">
+    </div>
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">비밀번호 확인</span>
+      <input type="password" class="form-control" name="mpwR" id="mpw" aria-describedby="basic-addon1">
     </div>
     <br>
     <div class="input-group">
