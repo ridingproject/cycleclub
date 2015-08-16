@@ -93,7 +93,7 @@
 				<td width="319">${cvo.mid}</td>
 			</tr>
 		</table>
-		<button type="submit" class="btn btn-default" onclick="club.do?action=update&ccode=${cvo.ccode}">수정</button>
+		<button type="submit" class="btn btn-default">수정</button>
 		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">모임 참여</button>
 		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">모임 취소</button>
 		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">목록으로</button>
