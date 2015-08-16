@@ -36,6 +36,11 @@ public class CycleClubServlet extends HttpServlet {
 		} else if("update".equals(action)){
 			// 모임 수정
 			request.setAttribute("next", "update");
+			String ccodestr = request.getParameter("ccode");
+			System.out.println(ccodestr); //detail에서 ccode넘어옴
+			int ccode = Integer.parseInt(ccodestr);
+			ClubVO cvo = service.selectClub(ccode);
+			request.setAttribute("cvo", cvo); //cvo넘겨줌
 			url = "/WEB-INF/cycleclub/club/updateClub.jsp";
 		} else if("delete".equals(action)){
 			// 모임 삭제
@@ -74,6 +79,7 @@ public class CycleClubServlet extends HttpServlet {
 			request.setAttribute("cvo", cvo);
 			ArrayList<MemberVO> mlist = service.joinClubList();
 			request.setAttribute("mlist", mlist);
+			System.out.println("detail 겠!!!!!!");
 			request.setAttribute("next", "update");
 			url = "/WEB-INF/cycleclub/club/detailClub.jsp";
 		}else if("join".equals(action)){
@@ -124,7 +130,7 @@ public class CycleClubServlet extends HttpServlet {
 //			Date to = transFormat.parse(request.getParameter("ctime"));
 			ClubVO updatevo = new ClubVO(ccode, cname, cplace, ctime, mid);
 			service.updateClub(updatevo);
-			response.sendRedirect("list.do");
+			response.sendRedirect("club.do?action=clublist");
 		}
 		
 	}

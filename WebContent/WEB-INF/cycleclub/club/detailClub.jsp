@@ -70,6 +70,8 @@
 	<h1>모임 상세조회</h1><br>
 
 	<form action="club.do" method="get">
+		<input type="text" class="form-control" name="ccode" id="ccode" value="${cvo.ccode }">
+		<input type="hidden" name="action" value="${next}">
 		<table border="1" width="800px" class="table table-striped">
 			<tr>
 				<td align="center" width="76">모임코드</td>
@@ -92,7 +94,7 @@
 				<td width="319">${cvo.mid}</td>
 			</tr>
 		</table>
-		<button type="submit" class="btn btn-default" onclick="javascript:history.back(-1)">수정</button>
+		<button type="submit" class="btn btn-default" onclick="club.do?action=update&ccode=${cvo.ccode}">수정</button>
 		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">모임 참여</button>
 		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">모임 취소</button>
 		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">목록으로</button>

@@ -80,27 +80,31 @@
 	<!-- 컨테이너 -->
 
   <form action="club.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups">
-    <input type="hidden" class="form-control" name="mid" id="mid">
-    <input type="hidden" name="action" value="${next}">
+    
+    <input type="hidden" name="action" value="${next}"><!-- updqte넘어옴 -->
     <input type="hidden" class="form-control" name="ccode" id="ccode">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">모임이름</span>
-      <input type="text" class="form-control" name="cname" id="cname"aria-describedby="basic-addon1">
+      <input type="text" class="form-control" name="cname" id="cname" value="${cvo.cname }" aria-describedby="basic-addon1">
     </div>
     <br>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">모임장소</span>
-      <input type="text" class="form-control" name="cplace" id="cplace"aria-describedby="basic-addon1">
+      <input type="text" class="form-control" name="cplace" id="cplace" value="${cvo.cplace }" aria-describedby="basic-addon1">
     </div>
     <br>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">모임시간</span>
-      <input type="text" class="form-control" name="ctime" id="ctime"aria-describedby="basic-addon1">
+      <input type="text" class="form-control" name="ctime" id="ctime" value="${cvo.ctime }" aria-describedby="basic-addon1">
     </div>
     <br>
+     <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">작성자</span>
+      <input type="text" readonly class="form-control" name="mid" id="mid" value="${cvo.mid }" aria-describedby="basic-addon1">
+    </div>
     
     <button type="submit" class="btn btn-default">수정</button>
-	<button type="submit" class="btn btn-default">취소</button>
+	<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">취소</button>
   </form>
 
 
@@ -122,4 +126,9 @@
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
+<script type="text/javascript">
+var mid = document.getElementById('mid') ;
+mid.readOnly = true;
+
+</script>
 </html>
