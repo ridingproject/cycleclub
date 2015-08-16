@@ -81,8 +81,7 @@
 
   <form action="club.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups">
     
-    <input type="hidden" name="action" value="${next}"><!-- updqte넘어옴 -->
-    <input type="hidden" class="form-control" name="ccode" id="ccode">
+    <input type="hidden" name="action" value="${next}"><!-- update넘어옴 -->
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">모임이름</span>
       <input type="text" class="form-control" name="cname" id="cname" value="${cvo.cname }" aria-describedby="basic-addon1">

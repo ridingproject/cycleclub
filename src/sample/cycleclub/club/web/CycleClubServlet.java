@@ -37,7 +37,7 @@ public class CycleClubServlet extends HttpServlet {
 			// 모임 수정
 			request.setAttribute("next", "update");
 			String ccodestr = request.getParameter("ccode");
-			//System.out.println(ccodestr); //detail에서 ccode넘어옴
+			System.out.println(ccodestr); //detail에서 ccode넘어옴
 			int ccode = Integer.parseInt(ccodestr);
 			ClubVO cvo = service.selectClub(ccode);
 			request.setAttribute("cvo", cvo); //cvo넘겨줌

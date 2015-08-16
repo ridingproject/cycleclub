@@ -71,6 +71,7 @@
 
 	<form action="club.do" method="get">
 		<input type="hidden" name="action" value="${next}">
+		<input type="hidden" name="ccode" value="${cvo.ccode}"> <!-- 지우지마...update에 필요하다고ㅋㅋㅋ -->
 		<table border="1" width="800px" class="table table-striped">
 			<tr>
 				<td align="center" width="76">모임코드</td>
