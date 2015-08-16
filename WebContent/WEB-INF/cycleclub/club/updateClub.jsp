@@ -102,7 +102,7 @@
       <span class="input-group-addon" id="basic-addon1">작성자</span>
       <input type="text" readonly class="form-control" name="mid" id="mid" value="${cvo.mid }" aria-describedby="basic-addon1">
     </div>
-    
+    <br><br>
     <button type="submit" class="btn btn-default">수정</button>
 	<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">취소</button>
   </form>
