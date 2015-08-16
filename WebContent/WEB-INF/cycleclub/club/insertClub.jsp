@@ -31,7 +31,27 @@
 
 </head>
 <body>
-
+<script type="text/javascript">
+	function club(){
+		var cname = document.all.cname.value;
+		var cplace = document.all.cpalce.value;
+		var ctime = document.all.ctime.value;
+		
+		if(cname.length==0||cname==""){
+			alert("모임명을 입력하세요");
+			document.all.cname.focus();
+			return false;
+		}else if(cplace.length==0||cpalce==""){
+			alert("장소를 입력하세요");
+			document.all.cplace.focus();
+			return false;
+		}else if(ctime.length==0||ctime==""||ctime.length<11){
+			alert("시간을 입력하세요");
+			document.all.ctime.focus();
+			return false;
+		}else {return true;}
+	}
+</script>
    <div class="container">
 
       <!-- Static navbar -->
@@ -80,7 +100,7 @@
    </div>
    <!-- 컨테이너 -->
    <c:if test="${!empty sessionScope.mid}">
- <form action="club.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups">
+ <form action="club.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups" onSubmit="return club();">
     <input type="hidden" class="form-control" name="mid" id="mid">
     <input type="hidden" name="action" value="${next}">
     <input type="hidden" class="form-control" name="ccode" id="ccode">
