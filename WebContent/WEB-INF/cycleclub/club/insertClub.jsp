@@ -33,9 +33,9 @@
 <body>
 <script type="text/javascript">
 	function club(){
-		var cname = document.all.cname.value;
-		var cplace = document.all.cpalce.value;
-		var ctime = document.all.ctime.value;
+		var cname = document.frm.cname.value;
+		var cplace = document.frm.cpalce.value;
+		var ctime = document.frm.ctime.value;
 		
 		if(cname.length==0||cname==""){
 			alert("모임명을 입력하세요");
@@ -45,12 +45,21 @@
 			alert("장소를 입력하세요");
 			document.all.cplace.focus();
 			return false;
-		}else if(ctime.length==0||ctime==""||ctime.length<11){
-			alert("시간을 입력하세요");
-			document.all.ctime.focus();
-			return false;
 		}else {return true;}
 	}
+	
+	function select(){
+		
+		var cyear = document.frm.year.value;
+		var cmonth = document.frm.month.value;
+		var cday = document.frm.day.value;
+		var chour = document.frm.hour.value;
+		var cmin = document.frm.min.value;
+		
+		var str = cyear+"/"+cmonth+"/"+cday+" "+chour+":"+cmin;
+		document.frm.ctime.value=str;
+	}
+	
 </script>
    <div class="container">
 
@@ -100,7 +109,8 @@
    </div>
    <!-- 컨테이너 -->
    <c:if test="${!empty sessionScope.mid}">
- <form action="club.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups" onSubmit="return club();">
+ <form action="club.do" method="post" name="frm" class="bs-example bs-example-form" data-example-id="simple-input-groups"  onSubmit="return club();">
+ 
     <input type="hidden" class="form-control" name="mid" id="mid">
     <input type="hidden" name="action" value="${next}">
     <input type="hidden" class="form-control" name="ccode" id="ccode">
@@ -116,8 +126,119 @@
     <br>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">모임시간</span>
-      <input type="text" class="form-control" name="ctime" id="ctime" aria-describedby="basic-addon1" placeholder="2015-08-12 10:52" >
+    <!--   <input type="text" class="form-control" name="ctime" id="ctime" aria-describedby="basic-addon1" placeholder="2015-08-12 10:52" >
+    -->
+	
+    <span class="form-control">
+    <input type="hidden" name="ctime" id="ctime">
+    <select style="width:60px" id="year" name="year"  onChange="select()">
+    	<option value="2015" selected>2015</option>
+    	<option value="2016">2016</option>
+    	<option value="2017">2017</option>
+    	<option value="2018">2018</option>
+    	<option value="2019">2019</option>
+    	<option value="2020">2020</option>
+    	<option value="2021">2021</option>
+    	<option value="2022">2022</option>
+    	<option value="2023">2023</option>
+    	<option value="2024">2024</option>
+    	<option value="2025">2025</option>
+    	<option value="2026">2026</option>
+    	<option value="2027">2027</option>
+    	<option value="2028">2028</option>
+    	<option value="2029">2029</option>
+    	<option value="2030">2030</option>
+    </select>&nbsp;년&nbsp;
+    <select style="width:40px" id="month" name="month" onChange="select()">
+    	<option value="01" selected>01</option>
+    	<option value="02">02</option>
+    	<option value="03">03</option>
+    	<option value="04">04</option>
+    	<option value="05">05</option>
+    	<option value="06">06</option>
+    	<option value="07">07</option>
+    	<option value="08">08</option>
+    	<option value="09">09</option>
+    	<option value="10">10</option>
+    	<option value="11">11</option>
+    	<option value="12">12</option>
+    </select>&nbsp;월&nbsp;
+   <select style="width:40px" id="day" name="day" onChange="select()">
+    	<option value="01" selected>01</option>
+    	<option value="02">02</option>
+    	<option value="03">03</option>
+    	<option value="04">04</option>
+    	<option value="05">05</option>
+    	<option value="06">06</option>
+    	<option value="07">07</option>
+    	<option value="08">08</option>
+    	<option value="09">09</option>
+    	<option value="10">10</option>
+    	<option value="11">11</option>
+    	<option value="12">12</option>
+    	<option value="13">13</option>
+    	<option value="14">14</option>
+    	<option value="15">15</option>
+    	<option value="16">16</option>
+    	<option value="17">17</option>
+    	<option value="18">18</option>
+    	<option value="19">19</option>
+    	<option value="20">20</option>
+    	<option value="21">21</option>
+    	<option value="22">22</option>
+    	<option value="23">23</option>
+    	<option value="24">24</option>
+    	<option value="25">25</option>
+    	<option value="26">26</option>
+    	<option value="27">27</option>
+    	<option value="28">28</option>
+    	<option value="29">29</option>
+    	<option value="30">30</option>
+    	<option value="31">31</option>
+    </select>&nbsp;일 &nbsp;
+     <select style="width:40px" id="hour" name="hour" onChange="select()">
+    	<option value="01" selected>01</option>
+    	<option value="02">02</option>
+    	<option value="03">03</option>
+    	<option value="04">04</option>
+    	<option value="05">05</option>
+    	<option value="06">06</option>
+    	<option value="07">07</option>
+    	<option value="08">08</option>
+    	<option value="09">09</option>
+    	<option value="10">10</option>
+    	<option value="11">11</option>
+    	<option value="12">12</option>
+    	<option value="13">13</option>
+    	<option value="14">14</option>
+    	<option value="15">15</option>
+    	<option value="16">16</option>
+    	<option value="17">17</option>
+    	<option value="18">18</option>
+    	<option value="19">19</option>
+    	<option value="20">20</option>
+    	<option value="21">21</option>
+    	<option value="22">22</option>
+    	<option value="23">23</option>
+    	<option value="24">24</option>
+    </select>&nbsp; 시 &nbsp;
+   <select style="width:40px" id="min" name="min"onChange="select()">
+    	<option value="00" selected>00</option>
+    	<option value="10">10</option>
+    	<option value="20">20</option>
+    	<option value="30">30</option>
+    	<option value="40">40</option>
+    	<option value="50">50</option>
+    	<option value="60">60</option>
+    </select>&nbsp;분&nbsp;
+    </span>
     </div>
+    
+
+    
+    
+    
+    
     <br>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">관리자 ID</span>
