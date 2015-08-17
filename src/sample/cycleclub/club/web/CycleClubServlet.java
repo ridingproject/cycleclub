@@ -101,6 +101,7 @@ public class CycleClubServlet extends HttpServlet {
 			request.setAttribute("message", "모임 참가를 쉬소 하엿습니다.");  // 메세지 안넘어감
 			request.setAttribute("next", "clublist");
 			response.sendRedirect("club.do?action=clublist");
+			return;
 		} else{
 			// �뿉�윭�럹�씠吏�
 			request.setAttribute("message", "에러페이지입니다.");
