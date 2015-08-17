@@ -165,7 +165,34 @@ public class ClubDAO implements IClubDAO {
 			}
 			return club;
 		}
-
+	
+	public MemberVO selectMember(String mid){
+		String sql = "select * from cyclemember where mid=?";
+		MemberVO member = new MemberVO();
+		Connection con = null;
+		try {
+			con = getConnection();
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, mid);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()){
+				member.setMcode(rs.getString("mcode"));
+				member.setMgpsx(rs.getDouble("mgpsx"));
+				member.setMgpsy(rs.getDouble("mgpsy"));
+				member.setMid(rs.getString("mid"));
+				member.setMjoin(rs.getInt("mjoin"));
+				member.setMname(rs.getString("mname"));
+				member.setMphone(rs.getString("mphone"));
+				member.setMpw(rs.getString("mpw"));
+			}
+		} catch (Exception e){
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			closeConnection(con);
+		}
+		return member;
+	}
+	
 	public void updateClub(ClubVO cvo) {
 		 Connection con = null;
 	        String sql = "update cycleclub set cname=?, cplace=?, ctime=?"
@@ -185,6 +212,22 @@ public class ClubDAO implements IClubDAO {
 	            closeConnection(con);
 	        }
 	}
+	
+	public void joinClub(MemberVO mvo) {
+		Connection con = null;
+		String sql = "update cyclemember set mjoin=? where mid=?";
+		try {
+			con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, 1);
+			pstmt.executeQuery();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			closeConnection(con);
+		}
+	} 
 
 	public Connection getConnection() {
 		DataSource ds = null; // javax.sql.DataSource

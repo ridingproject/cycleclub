@@ -21,7 +21,10 @@ public interface IClubService {
 	public java.util.ArrayList<ClubVO> listClub();
 
 	public ClubVO selectClub(int ccode);
+	
+	public MemberVO selectMember(String mid);
 
 	public void updateClub(ClubVO cvo);
 
+	public void joinClub(MemberVO mvo);
 }

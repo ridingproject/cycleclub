@@ -12,6 +12,7 @@ import sample.cycleclub.member.model.MemberVO;
  */
 public class ClubService implements IClubService {
 
+
 	public IClubDAO cdao = new ClubDAO();
 
 	public ClubVO detailClub(ClubVO cvo){
@@ -37,9 +38,16 @@ public class ClubService implements IClubService {
 	public ClubVO selectClub(int ccode){
 		return cdao.selectClub(ccode);
 	}
+	
+	public MemberVO selectMember(String mid){
+		return cdao.selectMember(mid);
+	}
 
 	public void updateClub(ClubVO cvo){
 		cdao.updateClub(cvo);
 	}
-
+	
+	public void joinClub(MemberVO mvo){
+		cdao.joinClub(mvo);
+	}
 }
