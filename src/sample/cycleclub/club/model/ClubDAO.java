@@ -68,12 +68,22 @@ public class ClubDAO implements IClubDAO {
 		String sql = "insert into cycleclub values(?,?,?,?,?)";
 		String sql1 = "select ifnull(max(ccode),0)+1 from cycleclub";
 		Connection con = null;
+		String numSet=null;
 		try {
 			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql1);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next())
-			  cvo.setCcode(rs.getString("ifnull(max(ccode),0)+1"));
+				if(Integer.parseInt(rs.getString("ifnull(max(ccode),0)+1"))<10){
+					numSet="000"+rs.getString("ifnull(max(ccode),0)+1");
+				}else if(Integer.parseInt(rs.getString("ifnull(max(ccode),0)+1"))<100){
+					numSet="00"+rs.getString("ifnull(max(ccode),0)+1");
+				}else if(Integer.parseInt(rs.getString("ifnull(max(ccode),0)+1"))<1000){
+					numSet="0"+rs.getString("ifnull(max(ccode),0)+1");
+				}else {
+					numSet=rs.getString("ifnull(max(ccode),0)+1");
+				}
+			  cvo.setCcode(numSet);
 			
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, cvo.getCcode());
