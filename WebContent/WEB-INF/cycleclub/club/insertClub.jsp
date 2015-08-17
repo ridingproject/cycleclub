@@ -34,7 +34,8 @@
 <script type="text/javascript">
 	function club(){
 		var cname = document.frm.cname.value;
-		var cplace = document.frm.cpalce.value;
+		var cplace = document.frm.cplace.value;
+		var cyear = document.frm.year.value;
 		var ctime = document.frm.ctime.value;
 		
 		if(cname.length==0||cname==""){
@@ -44,6 +45,9 @@
 		}else if(cplace.length==0||cpalce==""){
 			alert("장소를 입력하세요");
 			document.all.cplace.focus();
+			return false;
+		}else if(cyear.length<2){
+			alert("시간을 선택하세요");
 			return false;
 		}else {return true;}
 	}
@@ -132,7 +136,9 @@
     <span class="form-control">
     <input type="hidden" name="ctime" id="ctime">
     <select style="width:60px" id="year" name="year"  onChange="select()">
-    	<option value="2015" selected>2015</option>
+    	<option value="2013" selected>2013</option>
+    	<option value="2014">2014</option>
+    	<option value="2015">2015</option>
     	<option value="2016">2016</option>
     	<option value="2017">2017</option>
     	<option value="2018">2018</option>
