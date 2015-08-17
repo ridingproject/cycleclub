@@ -30,7 +30,13 @@
 
 </head>
 <body>
-
+<input id="message" value="${message}" type="text">
+ 
+   <script>
+      var dd = document.getElementById("message").value;
+      if (dd != '') {
+         alert("" + dd + "");
+      }</script>
 <div class="container">
 
 		<!-- Static navbar -->

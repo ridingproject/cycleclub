@@ -78,16 +78,19 @@ public class CycleClubServlet extends HttpServlet {
 			ClubVO cvo = service.selectClub(ccode);
 			request.setAttribute("cvo", cvo);
 			request.setAttribute("next", "update");
+			
 			url = "/WEB-INF/cycleclub/club/detailClub.jsp";
 		}else if("join".equals(action)){
 			// 모임 참가
+		
 			String mid = request.getParameter("mid");
 			MemberVO mvo = service.selectMember(mid);
-			ArrayList<MemberVO> mlist = service.joinClubList();
-			request.setAttribute("mlist", mlist);
-			request.setAttribute("mvo", mvo);
-			request.setAttribute("next", "join");
-			url = "/WEB-INF/cycleclub/club/listClub.jsp";
+			service.joinClub(mvo);
+			System.out.println("조인");
+			request.setAttribute("message", "모임 참가가 되었습니다.");
+			request.setAttribute("next", "clublist");
+			response.sendRedirect("club.do?action=clublist");
+			return;
 		} else{
 			// �뿉�윭�럹�씠吏�
 			request.setAttribute("message", "에러페이지입니다.");
@@ -135,7 +138,7 @@ public class CycleClubServlet extends HttpServlet {
 			service.updateClub(updatevo);
 			response.sendRedirect("club.do?action=clublist");
 		}  else if ("join".equals(action)){
-			
+			System.out.println("조인포스트");
 			String mcode = request.getParameter("mcode");
 			String mgpsx = request.getParameter("mgpsx");
 			String mgpsy = request.getParameter("mgpsy");
@@ -146,8 +149,7 @@ public class CycleClubServlet extends HttpServlet {
 			String mpw = request.getParameter("mpw");
 			MemberVO mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw);
 			// 자료형을 어떻게 할것인가??..
-			service.joinClub(mvo);
-			response.sendRedirect("club.do?action=clublist");
+
 
 		}
 		
