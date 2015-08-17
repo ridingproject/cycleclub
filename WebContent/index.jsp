@@ -30,7 +30,7 @@
 
 </head>
 <body>
-<input id="message" value="${message}" type="text">
+<input id="message" value="${message}" type="hidden">
  
  
  
