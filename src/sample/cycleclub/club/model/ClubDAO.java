@@ -223,15 +223,16 @@ public class ClubDAO implements IClubDAO {
 	        }
 	}
 	
-	public void joinClub(MemberVO mvo) {
+	public void joinClub(MemberVO mvo, ClubVO cvo) {
 		Connection con = null;
-		String sql = "update cyclemember set mjoin=? where mid=?";
+		String sql = "update cyclemember set mjoin=?, mcode=? where mid=?";
 		try {
 			con = getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, 1);
-			pstmt.setString(2, mvo.getMid());
-			pstmt.executeQuery();
+			pstmt.setString(2, cvo.getCcode());
+			pstmt.setString(3, mvo.getMid());
+			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -242,12 +243,13 @@ public class ClubDAO implements IClubDAO {
 	
 	public void unjoinClub(MemberVO mvo) {
 		Connection con = null;
-		String sql = "update cyclemember set mjoin=? where mid=?";
+		String sql = "update cyclemember set mjoin=? mcode=? where mid=?";
 		try {
 			con = getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, 0);
-			pstmt.setString(2, mvo.getMid());
+			pstmt.setString(2, "0");
+			pstmt.setString(3, mvo.getMid());
 			pstmt.executeQuery();
 			
 		} catch (SQLException e) {

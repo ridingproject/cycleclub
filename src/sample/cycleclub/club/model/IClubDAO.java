@@ -25,7 +25,7 @@ public interface IClubDAO {
 
 	public void updateClub(ClubVO cvo);
 	
-	public void joinClub(MemberVO mvo);
+	public void joinClub(MemberVO mvo, ClubVO cvo);
 	
 	public void unjoinClub(MemberVO mvo);
 }

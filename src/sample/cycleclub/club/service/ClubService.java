@@ -47,8 +47,8 @@ public class ClubService implements IClubService {
 		cdao.updateClub(cvo);
 	}
 	
-	public void joinClub(MemberVO mvo){
-		cdao.joinClub(mvo);
+	public void joinClub(MemberVO mvo, ClubVO cvo){
+		cdao.joinClub(mvo, cvo);
 	}
 	
 	public void unjoinClub(MemberVO mvo){

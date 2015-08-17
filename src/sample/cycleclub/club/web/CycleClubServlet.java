@@ -28,7 +28,7 @@ public class CycleClubServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// �엯�젰 �뼇�떇 �슂泥�, �꽌踰꾨줈遺��꽣 �뜲�씠�꽣瑜� 媛��졇�삤�뒗 肄붾뱶 �옉�꽦
 		String action = request.getParameter("action");
-		String url = "/WEB-INF/cycleclub/member/loginMember.jsp";
+		String url = "/WEB-INF/cycleclub/club/listClub.jsp";
 		if("insert".equals(action)){
 			// 모임 입력
 			request.setAttribute("next", "insert");
@@ -84,11 +84,14 @@ public class CycleClubServlet extends HttpServlet {
 			// 모임 참가
 		
 			String mid = request.getParameter("mid");
+			String ccodestr = request.getParameter("ccode");
+			int ccode = Integer.parseInt(ccodestr);
 			MemberVO mvo = service.selectMember(mid);
-			service.joinClub(mvo);
+			ClubVO cvo = service.selectClub(ccode);
+			service.joinClub(mvo, cvo);
 			System.out.println("조인");
-			request.setAttribute("message", "모임 참가가 되었습니다.");  // 메세지 안넘어감
-			request.setAttribute("next", "clublist");
+			request.getSession().setAttribute("message", "모임 참가가 되었습니다."); 
+			request.getSession().setAttribute("next", "clublist");
 			response.sendRedirect("club.do?action=clublist");
 			return;
 		} else if("unjoin".equals(action)){
@@ -98,8 +101,8 @@ public class CycleClubServlet extends HttpServlet {
 			MemberVO mvo = service.selectMember(mid);
 			service.unjoinClub(mvo);
 			System.out.println("조인");
-			request.setAttribute("message", "모임 참가를 쉬소 하엿습니다.");  // 메세지 안넘어감
-			request.setAttribute("next", "clublist");
+			request.getSession().setAttribute("message", "모임 참가를 쉬소 하엿습니다.");  
+			request.getSession().setAttribute("next", "clublist");
 			response.sendRedirect("club.do?action=clublist");
 			return;
 		} else{
