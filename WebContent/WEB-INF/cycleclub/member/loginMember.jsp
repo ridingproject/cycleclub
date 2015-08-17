@@ -42,7 +42,7 @@
     <br>
     
     <button type="submit" class="btn btn-default" >로그인</button>
-   <button type="reset" class="btn btn-default" onclick="joinMember.jsp">회원가입</button>
+    <button type="reset" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/member/member.do?action=join'">회원가입</button>
   </form>
 </body>
 </html>

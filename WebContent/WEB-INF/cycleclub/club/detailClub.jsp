@@ -95,9 +95,9 @@
 			</tr>
 		</table>
 		<button type="submit" class="btn btn-default">수정</button>
-		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">모임 참여</button>
+		<button type="button" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/club/club.do?action=join'">모임 참여</button>
 		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">모임 취소</button>
-		<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">목록으로</button>
+		<button type="button" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/club/club.do?action=clublist'">목록으로</button>
 		<!-- javascript:history.back(-1)는 Backspace와 같은 것 (뒤로가기) -->
 	</form>
 

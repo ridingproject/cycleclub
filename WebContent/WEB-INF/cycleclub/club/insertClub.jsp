@@ -126,7 +126,7 @@
     <br>
     
     <button type="submit" class="btn btn-default">저장</button>
-   <button type="reset" class="btn btn-default">취소</button>
+    <button type="reset" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/club/club.do?action=clublist'">취소</button>
   </form>
 </c:if>
 
