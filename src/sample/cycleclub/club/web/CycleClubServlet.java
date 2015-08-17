@@ -80,7 +80,7 @@ public class CycleClubServlet extends HttpServlet {
 			request.setAttribute("next", "update");
 			
 			url = "/WEB-INF/cycleclub/club/detailClub.jsp";
-		}else if("join".equals(action)){
+		} else if("join".equals(action)){
 			// 모임 참가
 		
 			String mid = request.getParameter("mid");
@@ -91,6 +91,16 @@ public class CycleClubServlet extends HttpServlet {
 			request.setAttribute("next", "clublist");
 			response.sendRedirect("club.do?action=clublist");
 			return;
+		} else if("unjoin".equals(action)){
+			// 모임 취소 
+			
+			String mid = request.getParameter("mid");
+			MemberVO mvo = service.selectMember(mid);
+			service.unjoinClub(mvo);
+			System.out.println("조인");
+			request.setAttribute("message", "모임 참가를 쉬소 하엿습니다.");  // 메세지 안넘어감
+			request.setAttribute("next", "clublist");
+			response.sendRedirect("club.do?action=clublist");
 		} else{
 			// �뿉�윭�럹�씠吏�
 			request.setAttribute("message", "에러페이지입니다.");

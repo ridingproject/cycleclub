@@ -239,6 +239,23 @@ public class ClubDAO implements IClubDAO {
 			closeConnection(con);
 		}
 	} 
+	
+	public void unjoinClub(MemberVO mvo) {
+		Connection con = null;
+		String sql = "update cyclemember set mjoin=? where mid=?";
+		try {
+			con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, 0);
+			pstmt.setString(2, mvo.getMid());
+			pstmt.executeQuery();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			closeConnection(con);
+		}
+	}
 
 	public Connection getConnection() {
 		DataSource ds = null; // javax.sql.DataSource

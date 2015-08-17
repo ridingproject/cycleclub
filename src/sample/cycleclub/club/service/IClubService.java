@@ -27,4 +27,6 @@ public interface IClubService {
 	public void updateClub(ClubVO cvo);
 
 	public void joinClub(MemberVO mvo);
+	
+	public void unjoinClub(MemberVO mvo);
 }
