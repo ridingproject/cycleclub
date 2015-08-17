@@ -28,7 +28,7 @@ public class CycleClubServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// �엯�젰 �뼇�떇 �슂泥�, �꽌踰꾨줈遺��꽣 �뜲�씠�꽣瑜� 媛��졇�삤�뒗 肄붾뱶 �옉�꽦
 		String action = request.getParameter("action");
-		String url = "/WEB-INF/cycleclub/club/listClub.jsp";
+		String url = "/WEB-INF/cycleclub/member/loginMember.jsp";
 		if("insert".equals(action)){
 			// 모임 입력
 			request.setAttribute("next", "insert");

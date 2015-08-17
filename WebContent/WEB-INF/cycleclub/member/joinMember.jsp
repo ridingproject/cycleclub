@@ -65,6 +65,7 @@
          alert("" + dd + "");
       }</script>
 <form action="member.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups" onSubmit="return loginCheck();">
+	<h1>타요타요 회원가입</h1>
     <input type="hidden" name="action" value="${next}">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">이름</span>

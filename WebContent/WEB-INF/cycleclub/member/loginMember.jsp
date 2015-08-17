@@ -28,6 +28,7 @@
          alert("" + dd + "");
       }</script>
 <form action="member.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups">
+	
     <input type="hidden" name="action" value="${next}">
 
     <div class="input-group">
