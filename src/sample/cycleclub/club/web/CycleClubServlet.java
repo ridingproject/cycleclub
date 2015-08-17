@@ -87,7 +87,7 @@ public class CycleClubServlet extends HttpServlet {
 			MemberVO mvo = service.selectMember(mid);
 			service.joinClub(mvo);
 			System.out.println("조인");
-			request.setAttribute("message", "모임 참가가 되었습니다.");
+			request.setAttribute("message", "모임 참가가 되었습니다.");  // 메세지 안넘어감
 			request.setAttribute("next", "clublist");
 			response.sendRedirect("club.do?action=clublist");
 			return;

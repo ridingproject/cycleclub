@@ -230,6 +230,7 @@ public class ClubDAO implements IClubDAO {
 			con = getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, 1);
+			pstmt.setString(2, mvo.getMid());
 			pstmt.executeQuery();
 			
 		} catch (SQLException e) {
