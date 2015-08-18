@@ -52,22 +52,23 @@ public class CycleMemberServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		if("join".equals(action)){
 			// 회원가입
-			String mname = request.getParameter("mname");
-			String mid = request.getParameter("mid");
-			String mpw = request.getParameter("mpw");
-			String mphone = request.getParameter("mphone");
-
+			String mname = request.getParameter("mname"); //폰에서 받은 것
+			String mid = request.getParameter("mid");//폰에서 받은 것
+			String mpw = request.getParameter("mpw");//폰에서 받은 것
+			String mphone = request.getParameter("mphone");//폰에서 받은 것
 			mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw);
-			boolean join = service.joinMember(mvo);
-			if(join){
-				request.setAttribute("next", "join");
-				response.sendRedirect("member.do?action=login");
-			}else{
-				request.setAttribute("msg", "동일한 아이디가 존재합니다.");
-				request.setAttribute("next", "join");
-				RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/cycleclub/member/joinMember.jsp");
-				disp.forward(request, response);	
-			}
+			response.getWriter().println(mvo.toString()); //스마트폰에서 출력
+
+//			boolean join = service.joinMember(mvo);
+//			if(join){
+//				request.setAttribute("next", "join");
+//				response.sendRedirect("member.do?action=login");
+//			}else{
+//				request.setAttribute("msg", "동일한 아이디가 존재합니다.");
+//				request.setAttribute("next", "join");
+//				RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/cycleclub/member/joinMember.jsp");
+//				disp.forward(request, response);	
+//			}
 		}else if("login".equals(action)){
 			String mid = request.getParameter("mid");
 			String mpw = request.getParameter("mpw");

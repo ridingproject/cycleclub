@@ -76,5 +76,11 @@ public class MemberVO {
 	public void setMpw(String mpw) {
 		this.mpw = mpw;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberVO [mcode=" + mcode + ", mgpsx=" + mgpsx + ", mgpsy=" + mgpsy + ", mid=" + mid + ", mjoin="
+				+ mjoin + ", mname=" + mname + ", mphone=" + mphone + ", mpw=" + mpw + "]";
+	}
 	
 }
