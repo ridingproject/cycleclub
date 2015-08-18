@@ -63,7 +63,7 @@
 		var str = cyear+"/"+cmonth+"/"+cday+" "+chour+":"+cmin;
 		document.frm.ctime.value=str;
 	}
-	
+
 </script>
    <div class="container">
 
@@ -235,7 +235,6 @@
     	<option value="30">30</option>
     	<option value="40">40</option>
     	<option value="50">50</option>
-    	<option value="60">60</option>
     </select>&nbsp;분&nbsp;
     </span>
     </div>

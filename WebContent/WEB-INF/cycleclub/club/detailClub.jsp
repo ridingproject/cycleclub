@@ -16,6 +16,27 @@
 <title>모임 상세조회</title>
 </head>
 <body>
+<script type="text/javascript">
+	function joinAlert(){
+		alert("모임에 참가하셨습니다!");
+	}
+	function cancelAlert(){
+		alert("모임 참가를 취소 하였습니다.");
+	}
+	
+	
+	function deleteCheck(){
+		var select = confirm("정말 삭제하시겠습니까?");
+		if(select == true){
+			alert("삭제되었습니다.");
+			location.href='/CycleClub/cycleclub/club/club.do?action=delete&mid=${cvo.mid}&ccode=${cvo.ccode}'
+		}else{
+			alert("취소되었습니다.");
+			return;
+		}
+	}
+	
+</script>
 
 	<div class="container">
 
@@ -93,10 +114,27 @@
 				<td width="319">${cvo.mid}</td>
 			</tr>
 		</table>
-		<button type="submit" class="btn btn-default">수정</button>
-		<button type="button" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/club/club.do?action=join&mid=${cvo.mid}&ccode=${cvo.ccode}'">모임 참여</button>
-		<button type="button" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/club/club.do?action=unjoin&mid=${cvo.mid}'">모임 취소</button>
-		<button type="button" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/club/club.do?action=delete&mid=${cvo.mid}&ccode=${cvo.ccode}'">모임 삭제</button>
+		<c:if test="${cvo.mid eq mid}">
+			<button type="submit" class="btn btn-default">수정</button>
+		</c:if>
+		<% int count=0; %>
+		<c:forEach var="mlist" items="${mlist}">
+			<c:if test="${mlist.mid eq mid}">
+				<c:set var="checkCode" value="${mlist.mcode}"/>
+
+			</c:if>
+		
+		</c:forEach>
+		
+				<c:if test="${checkCode ne cvo.ccode}">
+					<button type="button" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/club/club.do?action=join&mid=<%= session.getAttribute("mid")%>&ccode=${cvo.ccode}',joinAlert()" >모임 참여</button>
+				</c:if>
+				<c:if test="${checkCode eq cvo.ccode}">
+					<button type="button" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/club/club.do?action=unjoin&mid=<%= session.getAttribute("mid")%>',cancelAlert()">모임 취소</button>
+				</c:if>
+		<c:if test="${cvo.mid eq mid}">
+			<button type="button" class="btn btn-default" onclick="deleteCheck()">모임 삭제</button>
+			</c:if>
 		<button type="button" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/club/club.do?action=clublist'">목록으로</button>
 		<!-- javascript:history.back(-1)는 Backspace와 같은 것 (뒤로가기) -->
 	</form>

@@ -243,12 +243,12 @@ public class ClubDAO implements IClubDAO {
 	
 	public void unjoinClub(MemberVO mvo) {
 		Connection con = null;
-		String sql = "update cyclemember set mjoin=? mcode=? where mid=?";
+		String sql = "update cyclemember set mjoin=?, mcode=? where mid=?";
 		try {
 			con = getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, 0);
-			pstmt.setString(2, "0");
+			pstmt.setString(2, "");
 			pstmt.setString(3, mvo.getMid());
 			pstmt.executeQuery();
 			

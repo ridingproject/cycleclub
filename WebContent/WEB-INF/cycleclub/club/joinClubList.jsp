@@ -107,7 +107,7 @@
      	 </c:if>
       </c:forEach>
      <%if(count==0){ %><br>
-      	<c:out value="참가자가 없습니다^^ 얼른 참가해주세요!"/>
+      	&nbsp;&nbsp;&nbsp;<c:out value="참가자가 없습니다^^ 얼른 참가해주세요!"/>
    <%} %>
       
       </tr>
