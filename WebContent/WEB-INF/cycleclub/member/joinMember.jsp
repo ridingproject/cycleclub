@@ -19,40 +19,41 @@
 <body>
 <script type="text/javascript">
   	function loginCheck(){
-  		var name = document.all.mname.value;
-  		var id = document.all.mid.value;
-  		var pw = document.all.mpw.value;
-  		var pwR = document.all.mpwR.value;
-  		var phone = document.all.mphone.value;
+  		var name = document.frm.mname.value;
+  		var id = document.frm.mid.value;
+  		var pw = document.frm.mpw.value;
+  		var pwR = document.frm.mpwR.value;
+  		var phone = document.frm.mphone.value;
   		
   		if((name.length==0)||name==""){
   			alert("이름을 입력하세요.");
-  			document.all.mname.focus();
+  			document.frm.mname.focus();
   			return false;
   		}else if((id.length==0)||id==""){
   			alert("아이디를 입력하세요.");
-  			document.all.mid.focus();
+  			document.frm.mid.focus();
   			return false;
   		}else if((pw.length==0)||pw==""){
   			alert("비밀번호를 입력하세요.");
-  			document.all.mpw.focus();
+  			document.frm.mpw.focus();
   			return false;
   		}else if((pwR.length==0)||pwR==""){
   			alert("비밀번호를 입력하세요.");
-  			document.all.mpwR.focus();
+  			document.frm.mpwR.focus();
   			return false;
   		}else if((phone.length==0)||phone==""){
   			alert("전화번호를 입력하세요.");
-  			document.all.mphone.focus();
+  			document.frm.mphone.focus();
   			return false;
-  		}else{
-  			if(pw!=pwR){
+  		}else if(pw!=pwR){
   				alert("비밀번호가 다릅니다.");
-  				document.all.mpwR.value="";
+  				document.frm.mpwR.value="";
   				return false;
-  			}
+  		}else{
   			return true;
   		}
+
+  		
   	}
   
   </script>
@@ -64,7 +65,7 @@
       if (dd != '') {
          alert("" + dd + "");
       }</script>
-<form action="member.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups" onSubmit="return loginCheck();">
+<form action="member.do" method="post"  id ="frm" name="frm" class="bs-example bs-example-form" onSubmit="return loginCheck();" data-example-id="simple-input-groups" ">
 	<h1>타요타요 회원가입</h1>
     <input type="hidden" name="action" value="${next}">
     <div class="input-group">
@@ -84,7 +85,7 @@
     <br>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">비밀번호 확인</span>
-      <input type="password" class="form-control" name="mpwR" id="mpw" aria-describedby="basic-addon1">
+      <input type="password" class="form-control" name="mpwR" id="mpwR" aria-describedby="basic-addon1">
     </div>
     <br>
     <div class="input-group">
@@ -93,7 +94,7 @@
     </div>
     <br>
     
-    <button type="submit" class="btn btn-default">가입하기</button>
+    <button type="submit" class="btn btn-default" >가입하기</button>
     <button type="reset" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/member/member.do?action=login'">취소</button>
   </form>
 </body>
