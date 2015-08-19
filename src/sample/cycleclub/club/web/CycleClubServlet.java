@@ -158,18 +158,6 @@ public class CycleClubServlet extends HttpServlet {
 			ClubVO updatevo = new ClubVO(ccode, cname, cplace, ctime, mid);
 			service.updateClub(updatevo);
 			response.sendRedirect("club.do?action=clublist");
-		}  else if ("join".equals(action)){
-			System.out.println("조인포스트");
-			String mcode = request.getParameter("mcode");
-			String mgpsx = request.getParameter("mgpsx");
-			String mgpsy = request.getParameter("mgpsy");
-			String mid = request.getParameter("mid");
-			String mjoin = request.getParameter("mjoin");
-			String mname = request.getParameter("mname");
-			String mphone = request.getParameter("mphone");
-			String mpw = request.getParameter("mpw");
-			MemberVO mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw);
-			// 자료형을 어떻게 할것인가??..
 		} else if("Ainsert".equals(action)){
 			ClubVO cvo = new ClubVO();
 			
@@ -182,7 +170,27 @@ public class CycleClubServlet extends HttpServlet {
 			service.insertClub(cvo);
 			response.getWriter().println("등록되었습니다."); //스마트폰에서 출력
 
-		} /*else if ("Alist".equals(action)){
+		} else if("Ajoin".equals(action)){
+			// 모임 참가
+			String mid = request.getParameter("mid");
+			String ccodestr = request.getParameter("ccode");
+			int ccode = Integer.parseInt(ccodestr);
+			MemberVO mvo = service.selectMember(mid);
+			ClubVO cvo = service.selectClub(ccode);
+			service.joinClub(mvo, cvo);
+			response.getWriter().println("모임이 참여 되었습니다.");
+		} else if("Aunjoin".equals(action)){
+			// 모임 취소 
+			String mid = request.getParameter("mid");
+			MemberVO mvo = service.selectMember(mid);
+			service.unjoinClub(mvo);
+			
+			response.getWriter().println("모임이 취소 되었습니다.");
+		}
+		
+		
+		/*else if ("Alist".equals(action)){
+		}
 			ArrayList<ClubVO> clist = service.listClub();
 			request.setAttribute("clist", clist);
 //			for(ClubVO cvo:clist){
