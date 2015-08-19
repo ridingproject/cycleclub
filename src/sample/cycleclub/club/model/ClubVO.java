@@ -73,8 +73,11 @@ public String getCtime() {
 	public void setMid(String mid) {
 		this.mid = mid;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "ClubVO [ccode=" + ccode + ", cname=" + cname + ", cplace=" + cplace + ", ctime=" + ctime + ", mid="
+				+ mid + "]";
+	}
 	
-
 }

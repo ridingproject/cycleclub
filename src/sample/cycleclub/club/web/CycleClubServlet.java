@@ -170,7 +170,26 @@ public class CycleClubServlet extends HttpServlet {
 			String mpw = request.getParameter("mpw");
 			MemberVO mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw);
 			// 자료형을 어떻게 할것인가??..
-		}
+		} else if("Ainsert".equals(action)){
+			ClubVO cvo = new ClubVO();
+			
+			String cname = request.getParameter("cname");
+			String cplace = request.getParameter("cplace");
+			String ctime = request.getParameter("ctime");
+			String mid = request.getParameter("mid");
+			
+			cvo = new ClubVO(null, cname, cplace, ctime, mid);
+			service.insertClub(cvo);
+			response.getWriter().println("등록되었습니다."); //스마트폰에서 출력
+
+		} /*else if ("Alist".equals(action)){
+			ArrayList<ClubVO> clist = service.listClub();
+			request.setAttribute("clist", clist);
+//			for(ClubVO cvo:clist){
+//				System.out.println(cvo.toString());
+				response.getWriter().println(cvo.toString()); //스마트폰에서 출력
+//			}
+		}*/
 		
 	}
 	
