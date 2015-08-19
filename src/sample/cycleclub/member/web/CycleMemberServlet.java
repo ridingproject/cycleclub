@@ -1,6 +1,8 @@
 package sample.cycleclub.member.web;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,7 +29,7 @@ public class CycleMemberServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		String url = "/WEB-INF/cycleclub/member/loginMember.jsp";
 		request.setAttribute("next", "login");
-		
+
 		if("join".equals(action)){
 			// 회원가입
 			request.setAttribute("next", "join");
@@ -57,18 +59,17 @@ public class CycleMemberServlet extends HttpServlet {
 			String mpw = request.getParameter("mpw");//폰에서 받은 것
 			String mphone = request.getParameter("mphone");//폰에서 받은 것
 			mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw);
-			response.getWriter().println(mvo.toString()); //스마트폰에서 출력
 
-//			boolean join = service.joinMember(mvo);
-//			if(join){
-//				request.setAttribute("next", "join");
-//				response.sendRedirect("member.do?action=login");
-//			}else{
-//				request.setAttribute("msg", "동일한 아이디가 존재합니다.");
-//				request.setAttribute("next", "join");
-//				RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/cycleclub/member/joinMember.jsp");
-//				disp.forward(request, response);	
-//			}
+			boolean join = service.joinMember(mvo);
+			if(join){
+				request.setAttribute("next", "join");
+				response.sendRedirect("member.do?action=login");
+			}else{
+				request.setAttribute("msg", "동일한 아이디가 존재합니다.");
+				request.setAttribute("next", "join");
+				RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/cycleclub/member/joinMember.jsp");
+				disp.forward(request, response);
+			}
 		}else if("login".equals(action)){
 			String mid = request.getParameter("mid");
 			String mpw = request.getParameter("mpw");
@@ -97,6 +98,21 @@ public class CycleMemberServlet extends HttpServlet {
 					RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/cycleclub/member/loginMember.jsp");
 					disp.forward(request, response);
 				}
+			}
+		}if("Ajoin".equals(action)){
+			// 회원가입
+			String mname = URLDecoder.decode(request.getParameter("mname"), "UTF-8") ;//폰에서 받은 것
+			String mid = URLDecoder.decode(request.getParameter("mid"), "UTF-8") ;//폰에서 받은 것
+			String mpw = URLDecoder.decode(request.getParameter("mname"), "UTF-8") ;//폰에서 받은 것
+			String mphone = URLDecoder.decode(request.getParameter("mphone"), "UTF-8") ;
+
+			mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw);
+
+			boolean join = service.joinMember(mvo);
+			if(join){
+				response.getWriter().println(URLEncoder.encode("1", "UTF-8")); //스마트폰에서 출력
+			}else{
+				response.getWriter().println(URLEncoder.encode("0", "UTF-8")); //스마트폰에서 출력
 			}
 		}
 	}

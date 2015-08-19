@@ -1,6 +1,8 @@
 package sample.cycleclub.club.web;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+
+import com.google.gson.Gson;
 
 import sample.cycleclub.club.model.ClubDAO;
 import sample.cycleclub.club.model.ClubVO;
@@ -113,7 +120,7 @@ public class CycleClubServlet extends HttpServlet {
 			response.sendRedirect("club.do?action=clublist");
 			return;
 		} else{
-			// �뿉�윭�럹�씠吏�
+			
 			request.setAttribute("message", "에러페이지입니다.");
 		}
 		
@@ -123,7 +130,7 @@ public class CycleClubServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ���옣 �슂泥�, �꽌踰꾩뿉 �뜲�씠�꽣瑜� �쟾�넚(���옣)�븯�뒗 肄붾뱶 �옉�꽦
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 		if ("insert".equals(action)) {
 			// 紐⑥엫 �벑濡�
@@ -161,10 +168,10 @@ public class CycleClubServlet extends HttpServlet {
 		} else if("Ainsert".equals(action)){
 			ClubVO cvo = new ClubVO();
 			
-			String cname = request.getParameter("cname");
-			String cplace = request.getParameter("cplace");
-			String ctime = request.getParameter("ctime");
-			String mid = request.getParameter("mid");
+			String cname = URLDecoder.decode(request.getParameter("cname"), "UTF-8") ;
+			String cplace = URLDecoder.decode(request.getParameter("cplace"), "UTF-8") ;
+			String ctime = URLDecoder.decode(request.getParameter("ctime"), "UTF-8") ;
+			String mid = URLDecoder.decode(request.getParameter("mid"), "UTF-8") ;
 			
 			cvo = new ClubVO(null, cname, cplace, ctime, mid);
 			service.insertClub(cvo);
@@ -189,18 +196,13 @@ public class CycleClubServlet extends HttpServlet {
 		}
 		
 		
-		/*else if ("Alist".equals(action)){
-		}
-			ArrayList<ClubVO> clist = service.listClub();
-			request.setAttribute("clist", clist);
-//			for(ClubVO cvo:clist){
-//				System.out.println(cvo.toString());
-				response.getWriter().println(cvo.toString()); //스마트폰에서 출력
-//			}
-		}*/
-		
-	}
-	
-	
+		else if ("Alist".equals(action)){
 
+			ArrayList<ClubVO> clist = service.listClub();
+			Gson gson = new Gson();
+			String jsonStr = gson.toJson(clist);
+			String jsonMsg = URLEncoder.encode(jsonStr, "UTF-8") ;
+	        response.getWriter().print(jsonMsg);
+		}	
+	}
 }
