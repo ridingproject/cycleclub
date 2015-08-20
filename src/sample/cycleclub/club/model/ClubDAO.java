@@ -129,7 +129,7 @@ public class ClubDAO implements IClubDAO {
 	
 	public java.util.ArrayList<MemberVO> aJoinClubList(int ccode) {
 		ArrayList<MemberVO> mlist = new ArrayList<MemberVO>();
-		String sql = "select * from cyclemember where ccode=?";
+		String sql = "select * from cyclemember where mcode=?";
 		Connection con = null;
 		try {
 			con = getConnection();

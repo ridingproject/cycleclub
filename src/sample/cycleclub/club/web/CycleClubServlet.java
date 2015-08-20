@@ -212,7 +212,8 @@ public class CycleClubServlet extends HttpServlet {
 			String jsonMsg = URLEncoder.encode(jsonStr, "UTF-8") ;
 	        response.getWriter().print(jsonMsg);
 		}else if("Ajoinlist".equals(action)){
-			String ccode = URLDecoder.decode(request.getParameter("mid"), "UTF-8") ;
+			String ccode = (request.getParameter("ccode") ) ;
+			System.out.println(ccode);
 			ArrayList<MemberVO> mlist = service.aJoinClubList(Integer.parseInt(ccode));
 			Gson gson = new Gson();
 			String jsonStr = gson.toJson(mlist);
