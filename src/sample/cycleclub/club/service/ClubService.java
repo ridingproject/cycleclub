@@ -54,4 +54,7 @@ public class ClubService implements IClubService {
 	public void unjoinClub(MemberVO mvo){
 		cdao.unjoinClub(mvo);
 	}
+	public void deleteclubmember(ClubVO cvo){
+		cdao.deleteclubmember(cvo);
+	}
 }

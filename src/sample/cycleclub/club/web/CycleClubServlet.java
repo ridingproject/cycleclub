@@ -190,16 +190,20 @@ public class CycleClubServlet extends HttpServlet {
 			service.unjoinClub(mvo);
 			
 			response.getWriter().println("모임이 취소 되었습니다.");
-		}
-		
-		
-		else if ("Alist".equals(action)){
-
+		} else if ("Alist".equals(action)){
 			ArrayList<ClubVO> clist = service.listClub();
 			Gson gson = new Gson();
 			String jsonStr = gson.toJson(clist);
 			String jsonMsg = URLEncoder.encode(jsonStr, "UTF-8") ;
 	        response.getWriter().print(jsonMsg);
-		}	
+		} else if("Adelete".equals(action)){
+			// 모임 삭제
+			HttpSession session=request.getSession(true);
+			String mid = (String)session.getAttribute("mid");
+			String ccodestr = request.getParameter("ccode");
+			ClubVO cvo = new ClubVO(ccodestr,null,null,null,mid);
+			service.deleteclubmember(cvo);
+			service.deleteClub(cvo);
+		}
 	}
 }

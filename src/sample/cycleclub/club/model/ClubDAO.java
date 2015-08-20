@@ -258,6 +258,22 @@ public class ClubDAO implements IClubDAO {
 			closeConnection(con);
 		}
 	}
+	
+	public void deleteclubmember(ClubVO cvo) {
+		String sql = "update cyclemember set mcode=0, mjoin=0 where (mcode=?) and (mid=?)";
+		Connection con = null;
+		try {
+			con = getConnection();
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, cvo.getCcode());
+			stmt.setString(2, cvo.getMid());
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			closeConnection(con);
+		}
+	}
 
 	public Connection getConnection() {
 		DataSource ds = null; // javax.sql.DataSource
