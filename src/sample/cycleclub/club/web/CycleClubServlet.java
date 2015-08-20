@@ -219,6 +219,18 @@ public class CycleClubServlet extends HttpServlet {
 			String jsonStr = gson.toJson(mlist);
 			String jsonMsg = URLEncoder.encode(jsonStr, "UTF-8") ;
 	        response.getWriter().print(jsonMsg);
-		}
+		}else if("Aupdate".equals(action)){
+	         ClubVO cvo = new ClubVO();
+	         
+	         String cname = URLDecoder.decode(request.getParameter("cname"), "UTF-8") ;
+	         String cplace = URLDecoder.decode(request.getParameter("cplace"), "UTF-8") ;
+	         String ctime = URLDecoder.decode(request.getParameter("ctime"), "UTF-8") ;
+	         String mid = URLDecoder.decode(request.getParameter("mid"), "UTF-8") ;
+	         
+	         cvo = new ClubVO(null, cname, cplace, ctime, mid);
+	         service.updateClub(cvo);
+	         response.getWriter().println("수정되었습니다."); //스마트폰에서 출력
+
+	      } 
 	}
 }
