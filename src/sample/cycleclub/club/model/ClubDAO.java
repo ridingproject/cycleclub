@@ -126,6 +126,35 @@ public class ClubDAO implements IClubDAO {
 		}
 		return mlist;
 	}
+	
+	public java.util.ArrayList<MemberVO> aJoinClubList(int ccode) {
+		ArrayList<MemberVO> mlist = new ArrayList<MemberVO>();
+		String sql = "select * from cyclemember where ccode=?";
+		Connection con = null;
+		try {
+			con = getConnection();
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, ccode);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				MemberVO mvo = new MemberVO();
+				mvo.setMcode(rs.getString("mcode"));
+				mvo.setMgpsx(rs.getDouble("mgpsx"));
+				mvo.setMgpsy(rs.getDouble("mgpsy"));
+				mvo.setMid(rs.getString("mid"));
+				mvo.setMjoin(rs.getInt("mjoin"));
+				mvo.setMname(rs.getString("mname"));
+				mvo.setMphone(rs.getString("mphone"));
+				mvo.setMpw(rs.getString("mpw"));
+				mlist.add(mvo);
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			closeConnection(con);
+		}
+		return mlist;
+	}
 
 	public java.util.ArrayList<ClubVO> listClub() {
 		ArrayList<ClubVO> clist = new ArrayList<ClubVO>();

@@ -31,4 +31,6 @@ public interface IClubService {
 	public void unjoinClub(MemberVO mvo);
 	
 	public void deleteclubmember(ClubVO cvo);
+	
+	public java.util.ArrayList<MemberVO> aJoinClubList(int ccode);
 }

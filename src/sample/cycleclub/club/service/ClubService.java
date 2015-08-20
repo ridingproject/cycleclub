@@ -57,4 +57,9 @@ public class ClubService implements IClubService {
 	public void deleteclubmember(ClubVO cvo){
 		cdao.deleteclubmember(cvo);
 	}
+	
+	public java.util.ArrayList<MemberVO> aJoinClubList(int ccode){
+		return cdao.aJoinClubList(ccode);
+	}
+	
 }
