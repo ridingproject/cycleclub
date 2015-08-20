@@ -204,6 +204,13 @@ public class CycleClubServlet extends HttpServlet {
 			ClubVO cvo = new ClubVO(ccodestr,null,null,null,mid);
 			service.deleteclubmember(cvo);
 			service.deleteClub(cvo);
+		}else if("Asave".equals(action)){
+			String mid = URLDecoder.decode(request.getParameter("mid"), "UTF-8") ;
+			MemberVO mvo = service.selectMember(mid);
+			Gson gson = new Gson();
+			String jsonStr = gson.toJson(mvo);
+			String jsonMsg = URLEncoder.encode(jsonStr, "UTF-8") ;
+	        response.getWriter().print(jsonMsg);
 		}
 	}
 }
