@@ -11,13 +11,14 @@ public class MemberVO {
 	private String mname;
 	private String mphone;
 	private String mpw;
+	private String regid;
 	
 	public MemberVO() {
 	
 	}
 	
 	public MemberVO(String mcode, double mgpsx, double mgpsy, String mid, int mjoin, String mname, String mphone,
-			String mpw) {
+			String mpw,String regid) {
 		super();
 		this.mcode = mcode;
 		this.mgpsx = mgpsx;
@@ -27,7 +28,17 @@ public class MemberVO {
 		this.mname = mname;
 		this.mphone = mphone;
 		this.mpw = mpw;
+		this.regid = regid;
 	}
+	
+	public String getRegid() {
+		return regid;
+	}
+
+	public void setRegid(String regid) {
+		this.regid = regid;
+	}
+
 	public String getMcode() {
 		return mcode;
 	}

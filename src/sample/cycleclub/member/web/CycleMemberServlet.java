@@ -58,7 +58,7 @@ public class CycleMemberServlet extends HttpServlet {
 			String mid = request.getParameter("mid");//폰에서 받은 것
 			String mpw = request.getParameter("mpw");//폰에서 받은 것
 			String mphone = request.getParameter("mphone");//폰에서 받은 것
-			mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw);
+			mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw, null);
 
 			boolean join = service.joinMember(mvo);
 			if(join){
@@ -105,7 +105,7 @@ public class CycleMemberServlet extends HttpServlet {
 			String mpw = URLDecoder.decode(request.getParameter("mpw"),"UTF-8"); //폰에서 받은 것
 			String mphone = URLDecoder.decode(request.getParameter("mphone"),"UTF-8"); //폰에서 받은 것
 
-			mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw);
+			mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw, null);
 
 			boolean join = service.joinMember(mvo);
 

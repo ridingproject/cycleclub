@@ -179,6 +179,8 @@ public class CycleClubServlet extends HttpServlet {
 			String mid = request.getParameter("mid");
 			String ccodestr = request.getParameter("ccode");
 			int ccode = Integer.parseInt(ccodestr);
+			System.out.println(mid);
+			System.out.println(ccodestr);
 			MemberVO mvo = service.selectMember(mid);
 			ClubVO cvo = service.selectClub(ccode);
 			service.joinClub(mvo, cvo);
