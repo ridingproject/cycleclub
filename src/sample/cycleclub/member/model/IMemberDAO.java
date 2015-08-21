@@ -8,6 +8,7 @@ package sample.cycleclub.member.model;
  */
 public interface IMemberDAO {
 
+	public void updateMember(String mid,Double mgpsx,Double mgpsy);
 	public boolean joinMember(MemberVO mvo);
 
 	public String loginMember(MemberVO mvo);

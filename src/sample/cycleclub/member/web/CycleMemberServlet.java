@@ -148,6 +148,13 @@ public class CycleMemberServlet extends HttpServlet {
 					 response.getWriter().print("-1");
 				}
 			}
+		}else if("ALatLng".equals(action)){
+		
+			Double mgpsx = Double.parseDouble(request.getParameter("mgpsx")); //폰에서 받은 현재 위도
+			Double mgpsy = Double.parseDouble(request.getParameter("mgpsy")); //폰에서 받은 현재 위도
+			String mid = URLDecoder.decode(request.getParameter("mid"),"UTF-8"); //폰에서 받은 것
+
+			service.updateMember(mid, mgpsx, mgpsy);
 		}
 	}
 }

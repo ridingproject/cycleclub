@@ -9,6 +9,7 @@ import sample.cycleclub.member.model.MemberVO;
  */
 public interface IMemberService {
 
+	public void updateMember(String mid,Double mgpsx,Double mgpsy);
 	public boolean joinMember(MemberVO mvo);
 
 	public String loginMember(MemberVO mvo);

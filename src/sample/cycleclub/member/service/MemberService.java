@@ -20,4 +20,10 @@ public class MemberService implements IMemberService {
 	public String loginMember(MemberVO mvo){
 		return mdao.loginMember(mvo);
 	}
+
+	@Override
+	public void updateMember(String mid, Double mgpsx, Double mgpsy) {
+		mdao.updateMember(mid, mgpsx, mgpsy);
+		
+	}
 }

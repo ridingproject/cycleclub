@@ -20,6 +20,23 @@ public class MemberDAO implements IMemberDAO {
 
 	}
 
+	public void updateMember(String mid,Double mgpsx,Double mgpsy){
+		Connection con =null;
+		String sql = "update cyclemember set mgpsx=?,mgpsy=? where mid=?";
+		try{
+			con=getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setDouble(1, mgpsx);
+			pstmt.setDouble(2, mgpsy);
+			pstmt.setString(3, mid);
+			pstmt.executeUpdate();
+			System.out.println("updatemember 실행됐움~~~~~~~");
+		}catch(SQLException e){
+			throw new RuntimeException(e.getMessage());
+        }finally{
+            closeConnection(con);
+        }		
+	}
 	public boolean joinMember(MemberVO mvo){
 		String sql1 = "select count(*) as cnt from cyclemember where mid=?";
 		String sql2 = "insert into cyclemember values(?,?,?,?,?,?,?,?,?)";
