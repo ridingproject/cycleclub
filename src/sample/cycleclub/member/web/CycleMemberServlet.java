@@ -104,7 +104,6 @@ public class CycleMemberServlet extends HttpServlet {
 			String mid = URLDecoder.decode(request.getParameter("mid"),"UTF-8"); //폰에서 받은 것
 			String mpw = URLDecoder.decode(request.getParameter("mpw"),"UTF-8"); //폰에서 받은 것
 			String mphone = URLDecoder.decode(request.getParameter("mphone"),"UTF-8"); //폰에서 받은 것
-
 			mvo = new MemberVO(null, 0, 0, mid, 0, mname, mphone, mpw, null);
 
 			boolean join = service.joinMember(mvo);
@@ -118,12 +117,17 @@ public class CycleMemberServlet extends HttpServlet {
 		}else if("Alogin".equals(action)){
 			String mid = URLDecoder.decode(request.getParameter("mid"),"UTF-8");
 			String mpw = URLDecoder.decode(request.getParameter("mpw"),"UTF-8");
-
+			String regid = URLDecoder.decode(request.getParameter("regid"),"UTF-8");
+			
+			System.out.println(regid);
+			
 			mvo = new MemberVO();
 			
 			mvo.setMid(mid);
 			mvo.setMpw(mpw);
-
+			mvo.setRegid(regid);
+			
+			service.registRegid(mvo);
 			String login = service.loginMember(mvo);
 
 			if("error".equals(login)){

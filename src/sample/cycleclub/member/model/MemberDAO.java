@@ -104,6 +104,22 @@ public class MemberDAO implements IMemberDAO {
 		}
 		return pw;
 	}
+	
+	public void registRegid(MemberVO mvo){
+		String sql = "update cyclemember set regid=? where mid=?";
+		Connection con = null;
+		try {
+			con = getConnection();
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, mvo.getRegid());
+			stmt.setString(2, mvo.getMid());
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			closeConnection(con);
+		}
+	}
 
 	public Connection getConnection() {
 		DataSource ds = null; //javax.sql.DataSource

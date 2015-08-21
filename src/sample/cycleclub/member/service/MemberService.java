@@ -24,6 +24,9 @@ public class MemberService implements IMemberService {
 	@Override
 	public void updateMember(String mid, Double mgpsx, Double mgpsy) {
 		mdao.updateMember(mid, mgpsx, mgpsy);
-		
+	}
+	
+	public void registRegid(MemberVO mvo){
+		mdao.registRegid(mvo);
 	}
 }
