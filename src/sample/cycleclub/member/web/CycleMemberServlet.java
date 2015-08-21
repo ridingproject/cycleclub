@@ -155,6 +155,7 @@ public class CycleMemberServlet extends HttpServlet {
 			String mid = URLDecoder.decode(request.getParameter("mid"),"UTF-8"); //폰에서 받은 것
 
 			service.updateMember(mid, mgpsx, mgpsy);
+			response.getWriter().toString();
 		}
 	}
 }
