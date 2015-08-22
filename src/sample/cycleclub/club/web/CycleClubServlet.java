@@ -250,16 +250,8 @@ public class CycleClubServlet extends HttpServlet {
 				list.add(mvo.getRegid());
 			}
 
-			/*	String msg = "도와주세요";
+			String msg = "Help me!!!";
 			Message message = new Message.Builder().addData("msg", msg)
-					.build();
-			 */
-			String[] msg = { "111111111111111", "22222222222222222", 
-					"33333333333333333", "444444444444444", "5555555555555" }; 
-
-			int index = (int)(Math.random()*5);
-
-			Message message = new Message.Builder().addData("msg", msg[index])
 					.build();
 
 			MulticastResult multiResult = sender.send(message, list, 5);
