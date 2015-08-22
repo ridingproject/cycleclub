@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.android.gcm.server.Message;
+import com.google.android.gcm.server.MulticastResult;
+import com.google.android.gcm.server.Result;
+import com.google.android.gcm.server.Sender;
 import com.google.gson.Gson;
 
 import sample.cycleclub.club.model.ClubDAO;
@@ -25,10 +30,10 @@ import sample.cycleclub.member.model.MemberVO;
 @WebServlet("/cycleclub/club/club.do")
 public class CycleClubServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	IClubService service = new ClubService();
 	IClubDAO dao = new ClubDAO();
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String action = request.getParameter("action");
@@ -36,9 +41,9 @@ public class CycleClubServlet extends HttpServlet {
 		if("insert".equals(action)){
 			// 모임 입력
 			request.setAttribute("next", "insert");
-			
+
 			url = "/WEB-INF/cycleclub/club/insertClub.jsp";
-			
+
 		} else if("update".equals(action)){
 			// 모임 수정
 			request.setAttribute("next", "update");
@@ -47,9 +52,9 @@ public class CycleClubServlet extends HttpServlet {
 			int ccode = Integer.parseInt(ccodestr);
 			ClubVO cvo = service.selectClub(ccode);
 			request.setAttribute("cvo", cvo); //cvo넘겨줌
-			
+
 			url = "/WEB-INF/cycleclub/club/updateClub.jsp";
-			
+
 		} else if("delete".equals(action)){
 			// 모임 삭제
 			HttpSession session=request.getSession(true);
@@ -60,9 +65,9 @@ public class CycleClubServlet extends HttpServlet {
 			ArrayList<ClubVO> clist = service.listClub();
 			request.setAttribute("clist", clist);
 			request.setAttribute("next", "insert");
-			
+
 			url = "/WEB-INF/cycleclub/club/listClub.jsp";
-			
+
 		} else if("clublist".equals(action)){
 			// 모임 목록
 			ArrayList<ClubVO> clist = service.listClub();
@@ -70,9 +75,9 @@ public class CycleClubServlet extends HttpServlet {
 			request.setAttribute("next", "insert");
 			ArrayList<MemberVO> mlist = service.joinClubList();
 			request.setAttribute("mlist", mlist);
-			
+
 			url = "/WEB-INF/cycleclub/club/listClub.jsp";
-			
+
 		} else if("joinlist".equals(action)){
 			// 모임 참가 리스트
 			request.setAttribute("next","clublist");
@@ -82,7 +87,7 @@ public class CycleClubServlet extends HttpServlet {
 			request.setAttribute("mlist", mlist);
 
 			url = "/WEB-INF/cycleclub/club/joinClubList.jsp";
-			
+
 		} else if("detail".equals(action)){
 			// 모임 상세내용
 			HttpSession session=request.getSession(true);
@@ -94,10 +99,10 @@ public class CycleClubServlet extends HttpServlet {
 			request.setAttribute("next", "update");
 			ArrayList<MemberVO> mlist = service.joinClubList();
 			request.setAttribute("mlist", mlist);
-			
-			
+
+
 			url = "/WEB-INF/cycleclub/club/detailClub.jsp";
-			
+
 		} else if("join".equals(action)){
 			// 모임 참가
 			String mid = request.getParameter("mid");
@@ -117,10 +122,10 @@ public class CycleClubServlet extends HttpServlet {
 			response.sendRedirect("club.do?action=clublist");
 			return;
 		} else{
-			
+
 			request.setAttribute("message", "에러페이지입니다.");
 		}
-		
+
 		RequestDispatcher disp = request.getRequestDispatcher(url);
 		disp.forward(request, response);
 	}
@@ -148,7 +153,7 @@ public class CycleClubServlet extends HttpServlet {
 			 */
 			cvo = new ClubVO(ccode, cname, cplace, ctime, mid);
 			service.insertClub(cvo);
-			
+
 			response.sendRedirect("club.do?action=clublist");
 		} else if ("update".equals(action)) {
 			// 紐⑥엫 �닔�젙
@@ -157,19 +162,19 @@ public class CycleClubServlet extends HttpServlet {
 			String ccode = request.getParameter("ccode");
 			String mid = request.getParameter("mid");
 			String ctime = request.getParameter("ctime");
-//			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//			Date to = transFormat.parse(request.getParameter("ctime"));
+			//			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			//			Date to = transFormat.parse(request.getParameter("ctime"));
 			ClubVO updatevo = new ClubVO(ccode, cname, cplace, ctime, mid);
 			service.updateClub(updatevo);
 			response.sendRedirect("club.do?action=clublist");
 		} else if("Ainsert".equals(action)){
 			ClubVO cvo = new ClubVO();
-			
+
 			String cname = URLDecoder.decode(request.getParameter("cname"), "UTF-8") ;
 			String cplace = URLDecoder.decode(request.getParameter("cplace"), "UTF-8") ;
 			String ctime = URLDecoder.decode(request.getParameter("ctime"), "UTF-8") ;
 			String mid = URLDecoder.decode(request.getParameter("mid"), "UTF-8") ;
-			
+
 			cvo = new ClubVO(null, cname, cplace, ctime, mid);
 			service.insertClub(cvo);
 			response.getWriter().println("등록되었습니다."); //스마트폰에서 출력
@@ -190,14 +195,14 @@ public class CycleClubServlet extends HttpServlet {
 			String mid = request.getParameter("mid");
 			MemberVO mvo = service.selectMember(mid);
 			service.unjoinClub(mvo);
-			
+
 			response.getWriter().println("모임이 취소 되었습니다.");
 		} else if ("Alist".equals(action)){
 			ArrayList<ClubVO> clist = service.listClub();
 			Gson gson = new Gson();
 			String jsonStr = gson.toJson(clist);
 			String jsonMsg = URLEncoder.encode(jsonStr, "UTF-8") ;
-	        response.getWriter().print(jsonMsg);
+			response.getWriter().print(jsonMsg);
 		} else if("Adelete".equals(action)){
 			// 모임 삭제
 			HttpSession session=request.getSession(true);
@@ -212,7 +217,7 @@ public class CycleClubServlet extends HttpServlet {
 			Gson gson = new Gson();
 			String jsonStr = gson.toJson(mvo);
 			String jsonMsg = URLEncoder.encode(jsonStr, "UTF-8") ;
-	        response.getWriter().print(jsonMsg);
+			response.getWriter().print(jsonMsg);
 		}else if("Ajoinlist".equals(action)){
 			String ccode = (request.getParameter("ccode") ) ;
 			System.out.println(ccode);
@@ -220,19 +225,56 @@ public class CycleClubServlet extends HttpServlet {
 			Gson gson = new Gson();
 			String jsonStr = gson.toJson(mlist);
 			String jsonMsg = URLEncoder.encode(jsonStr, "UTF-8") ;
-	        response.getWriter().print(jsonMsg);
+			response.getWriter().print(jsonMsg);
 		}else if("Aupdate".equals(action)){
-	         ClubVO cvo = new ClubVO();
-	         
-	         String cname = URLDecoder.decode(request.getParameter("cname"), "UTF-8") ;
-	         String cplace = URLDecoder.decode(request.getParameter("cplace"), "UTF-8") ;
-	         String ctime = URLDecoder.decode(request.getParameter("ctime"), "UTF-8") ;
-	         String mid = URLDecoder.decode(request.getParameter("mid"), "UTF-8") ;
-	         
-	         cvo = new ClubVO(null, cname, cplace, ctime, mid);
-	         service.updateClub(cvo);
-	         response.getWriter().println("수정되었습니다."); //스마트폰에서 출력
+			ClubVO cvo = new ClubVO();
 
-	      } 
+			String cname = URLDecoder.decode(request.getParameter("cname"), "UTF-8") ;
+			String cplace = URLDecoder.decode(request.getParameter("cplace"), "UTF-8") ;
+			String ctime = URLDecoder.decode(request.getParameter("ctime"), "UTF-8") ;
+			String mid = URLDecoder.decode(request.getParameter("mid"), "UTF-8") ;
+
+			cvo = new ClubVO(null, cname, cplace, ctime, mid);
+			service.updateClub(cvo);
+			response.getWriter().println("수정되었습니다."); //스마트폰에서 출력
+
+		}else if("Apush".equals(action)){
+			Sender sender = new Sender("AIzaSyD-I6yxO-P9oBZJJyJG-IQ0J8lRtX8yFe8");
+
+			String ccode = (request.getParameter("ccode") );
+			ArrayList<MemberVO> mlist = service.aJoinClubList(Integer.parseInt(ccode));
+
+			List<String> list = new ArrayList<String>();
+			for(MemberVO mvo:mlist){
+				System.out.println(mvo.getRegid());
+				list.add(mvo.getRegid());
+			}
+
+			/*	String msg = "도와주세요";
+			Message message = new Message.Builder().addData("msg", msg)
+					.build();
+			 */
+			String[] msg = { "111111111111111", "22222222222222222", 
+					"33333333333333333", "444444444444444", "5555555555555" }; 
+
+			int index = (int)(Math.random()*5);
+
+			Message message = new Message.Builder().addData("msg", msg[index])
+					.build();
+
+			MulticastResult multiResult = sender.send(message, list, 5);
+
+			if (multiResult != null) {
+
+				List<Result> resultList = multiResult.getResults();
+
+				for (Result result : resultList) {
+
+					System.out.println(result.getMessageId());
+
+				}
+
+			}
+		} 
 	}
 }

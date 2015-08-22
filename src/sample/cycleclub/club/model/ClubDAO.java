@@ -146,6 +146,7 @@ public class ClubDAO implements IClubDAO {
 				mvo.setMname(rs.getString("mname"));
 				mvo.setMphone(rs.getString("mphone"));
 				mvo.setMpw(rs.getString("mpw"));
+				mvo.setRegid(rs.getString("regid"));
 				mlist.add(mvo);
 			}
 		} catch (Exception e) {
