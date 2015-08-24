@@ -224,6 +224,7 @@ public class ClubDAO implements IClubDAO {
 				member.setMname(rs.getString("mname"));
 				member.setMphone(rs.getString("mphone"));
 				member.setMpw(rs.getString("mpw"));
+				member.setRegid(rs.getString("regid"));
 			}
 		} catch (Exception e){
 			throw new RuntimeException(e.getMessage());

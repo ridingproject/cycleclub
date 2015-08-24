@@ -133,7 +133,9 @@ public class CycleClubServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ���옣 �슂泥�, �꽌踰꾩뿉 �뜲�씠�꽣瑜� �쟾�넚(���옣)�븯�뒗 肄붾뱶 �옉�꽦
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
+		Sender sender = new Sender("AIzaSyD-I6yxO-P9oBZJJyJG-IQ0J8lRtX8yFe8");
 		if ("insert".equals(action)) {
 			// 紐⑥엫 �벑濡�
 			// �뜲�씠�꽣 ���옣 泥섎━
@@ -239,10 +241,11 @@ public class CycleClubServlet extends HttpServlet {
 			response.getWriter().println("수정되었습니다."); //스마트폰에서 출력
 
 		}else if("Apush".equals(action)){
-			Sender sender = new Sender("AIzaSyD-I6yxO-P9oBZJJyJG-IQ0J8lRtX8yFe8");
 
-			String ccode = (request.getParameter("ccode") );
+			String mid = URLDecoder.decode(request.getParameter("mid"),"UTF-8" );
+			String ccode = URLDecoder.decode(request.getParameter("ccode"),"UTF-8" );
 			ArrayList<MemberVO> mlist = service.aJoinClubList(Integer.parseInt(ccode));
+			MemberVO myvo = service.selectMember(mid);
 
 			List<String> list = new ArrayList<String>();
 			for(MemberVO mvo:mlist){
@@ -250,10 +253,9 @@ public class CycleClubServlet extends HttpServlet {
 				list.add(mvo.getRegid());
 			}
 
-			String msg = "Help me!!!";
+			String msg = URLEncoder.encode(myvo.getMname()+" : 응급 상황 입니다.","UTF-8");
 			Message message = new Message.Builder().addData("msg", msg)
 					.build();
-
 			MulticastResult multiResult = sender.send(message, list, 5);
 
 			if (multiResult != null) {
@@ -267,6 +269,18 @@ public class CycleClubServlet extends HttpServlet {
 				}
 
 			}
-		} 
+		}else if("Apart".equals(action)){
+			String mid = URLDecoder.decode(request.getParameter("mid"),"UTF-8" );
+			MemberVO myvo = service.selectMember(mid);
+			System.out.println(myvo.getRegid());
+			String msg = URLEncoder.encode(myvo.getMname()+"님 경로를 이탈 하였습니다.","UTF-8");
+			Message message = new Message.Builder().addData("msg", msg)
+					.build();
+			Result Result = sender.send(message, myvo.getRegid(), 5);
+
+			if (Result != null) {
+				System.out.println(Result.getMessageId());
+			}
+		}
 	}
 }
