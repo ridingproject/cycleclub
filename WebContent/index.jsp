@@ -43,7 +43,7 @@
          alert("" + dd + "");
       }</script>
 	<br>
-	<%@ include file="/Header.jsp"%>
+    <%@ include file="/Header.jsp"%>
 	<c:if test="${!empty sessionScope.mid}">
 		<form class="bs-example bs-example-form"
 			data-example-id="simple-input-groups">

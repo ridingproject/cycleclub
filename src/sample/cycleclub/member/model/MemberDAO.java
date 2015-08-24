@@ -30,7 +30,7 @@ public class MemberDAO implements IMemberDAO {
 			pstmt.setDouble(2, mgpsy);
 			pstmt.setString(3, mid);
 			pstmt.executeUpdate();
-			System.out.println("updatemember 실행됐움~~~~~~~");
+			//System.out.println("updatemember 실행됐움~~~~~~~");
 		}catch(SQLException e){
 			throw new RuntimeException(e.getMessage());
         }finally{

@@ -166,14 +166,14 @@ public class ClubDAO implements IClubDAO {
 		return mlist;
 	}
 	
-	public java.util.ArrayList<MemberVO> aJoinClubList(int ccode) {
+	public java.util.ArrayList<MemberVO> aJoinClubList(String ccode) {
 		ArrayList<MemberVO> mlist = new ArrayList<MemberVO>();
 		String sql = "select * from cyclemember where mcode=?";
 		Connection con = null;
 		try {
 			con = getConnection();
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, ccode);
+			stmt.setString(1, ccode);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				MemberVO mvo = new MemberVO();

@@ -222,8 +222,8 @@ public class CycleClubServlet extends HttpServlet {
 			response.getWriter().print(jsonMsg);
 		}else if("Ajoinlist".equals(action)){
 			String ccode = (request.getParameter("ccode") ) ;
-			System.out.println(ccode);
-			ArrayList<MemberVO> mlist = service.aJoinClubList(Integer.parseInt(ccode));
+			//System.out.println(ccode);
+			ArrayList<MemberVO> mlist = service.aJoinClubList(ccode);
 			Gson gson = new Gson();
 			String jsonStr = gson.toJson(mlist);
 			String jsonMsg = URLEncoder.encode(jsonStr, "UTF-8") ;
@@ -244,7 +244,7 @@ public class CycleClubServlet extends HttpServlet {
 
 			String mid = URLDecoder.decode(request.getParameter("mid"),"UTF-8" );
 			String ccode = URLDecoder.decode(request.getParameter("ccode"),"UTF-8" );
-			ArrayList<MemberVO> mlist = service.aJoinClubList(Integer.parseInt(ccode));
+			ArrayList<MemberVO> mlist = service.aJoinClubList(ccode);
 			MemberVO myvo = service.selectMember(mid);
 
 			List<String> list = new ArrayList<String>();
@@ -284,7 +284,7 @@ public class CycleClubServlet extends HttpServlet {
 		}else if("AclubWhoGPS".equals(action)){
 			//클럽 주최사 GPS가져오려고 
 			ArrayList<ClubVO> clist = service.listClub();
-			String mcode = URLDecoder.decode(request.getParameter("mcode"),"UTF-8"); //폰에서 받은 것
+			String mcode = request.getParameter("ccode"); //폰에서 받은 것
 			for(ClubVO cvo : clist){
 				if(mcode.equals(cvo.getCcode())){
 					String clubWho = cvo.getMid(); //주최자 MID
