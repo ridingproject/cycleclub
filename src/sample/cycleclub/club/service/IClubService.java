@@ -12,6 +12,7 @@ public interface IClubService {
 
 	public ClubVO detailClub(ClubVO cvo);
 
+	public MemberVO ClubWhoMember(String mid);
 	public void deleteClub(ClubVO cvo);
 
 	public void insertClub(ClubVO cvo);

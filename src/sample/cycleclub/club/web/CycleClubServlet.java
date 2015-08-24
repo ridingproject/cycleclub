@@ -281,6 +281,22 @@ public class CycleClubServlet extends HttpServlet {
 			if (Result != null) {
 				System.out.println(Result.getMessageId());
 			}
+		}else if("AclubWhoGPS".equals(action)){
+			//클럽 주최사 GPS가져오려고 
+			ArrayList<ClubVO> clist = service.listClub();
+			String mcode = URLDecoder.decode(request.getParameter("mcode"),"UTF-8"); //폰에서 받은 것
+			for(ClubVO cvo : clist){
+				if(mcode.equals(cvo.getCcode())){
+					String clubWho = cvo.getMid(); //주최자 MID
+					MemberVO mvo = service.ClubWhoMember(clubWho);
+					Gson gson = new Gson();
+					String jsonStr = gson.toJson(mvo);
+					String jsonMsg = URLEncoder.encode(jsonStr, "UTF-8") ;
+					response.getWriter().print(jsonMsg);
+				}else{
+					System.out.println("??");
+				}
+			}				
 		}
 	}
 }

@@ -18,6 +18,45 @@ import sample.cycleclub.member.model.MemberVO;
  * @created 09-8-2015 ���� 11:12:57
  */
 public class ClubDAO implements IClubDAO {
+	
+	public MemberVO ClubWhoMember(String mid){
+		Connection con = null;
+		MemberVO member = new MemberVO();
+		String sql = "select * from cyclemember where mid = ?";
+		try{
+			con= getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			ResultSet rs = pstmt.executeQuery();
+			/*private String mcode;
+			private double mgpsx;
+			private double mgpsy;
+			private String mid;
+			private int mjoin;
+			private String mname;
+			private String mphone;
+			private String mpw;
+			private String regid;*/
+			while(rs.next()){
+				 String mgpsx = rs.getString("mgpsx");
+				 String mgpsy = rs.getString("mgpsy");
+				 Double gpslat = Double.parseDouble(mgpsx);
+				 Double gpslon = Double.parseDouble(mgpsy);
+				 String mid1 = rs.getString("mid");
+				 String mcode = rs.getString("mcode");
+				 String mname = rs.getString("mname");
+				 String mphone = rs.getString("mphone");
+				 String mpw = rs.getString("mpw");
+				 String regid = rs.getString("regid");
+				 member = new MemberVO(mcode, gpslat, gpslon, mid1, 1, mname, mphone, mpw, regid);
+			}
+		}catch(SQLException e){
+			throw new RuntimeException(e.getMessage());
+		}finally{
+			closeConnection(con);
+		}
+		return member;
+	}
 
 	public void deleteClub(ClubVO cvo) {
 		Connection con=null;

@@ -15,6 +15,9 @@ public class ClubService implements IClubService {
 
 	public IClubDAO cdao = new ClubDAO();
 
+	public MemberVO ClubWhoMember(String mid){
+		return cdao.ClubWhoMember(mid);
+	}
 	public ClubVO detailClub(ClubVO cvo){
 		return cdao.detailClub(cvo);
 	}

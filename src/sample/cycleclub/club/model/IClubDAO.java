@@ -8,6 +8,7 @@ import sample.cycleclub.member.model.MemberVO;
  * @created 09-8-2015 ���� 11:12:57
  */
 public interface IClubDAO {
+	public MemberVO ClubWhoMember(String mid);
 
 	public void deleteClub(ClubVO cvo);
 
