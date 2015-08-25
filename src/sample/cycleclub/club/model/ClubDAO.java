@@ -228,14 +228,14 @@ public class ClubDAO implements IClubDAO {
 		return clist;
 	}
 
-	public ClubVO selectClub(int ccode){
+	public ClubVO selectClub(String ccode){
 			String sql = "select * from cycleclub where ccode=?";
 			ClubVO club = new ClubVO();
 			Connection con = null;
 			try {
 				con = getConnection();
 				PreparedStatement stmt = con.prepareStatement(sql);
-				stmt.setInt(1, ccode);
+				stmt.setString(1, ccode);
 				ResultSet rs = stmt.executeQuery();
 				if(rs.next()){
 					club.setCcode(rs.getString("ccode"));
