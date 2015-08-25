@@ -326,7 +326,7 @@ public class ClubDAO implements IClubDAO {
 			con = getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, 0);
-			pstmt.setString(2, "");
+			pstmt.setString(2, null);
 			pstmt.setString(3, mvo.getMid());
 			pstmt.executeQuery();
 			
@@ -338,7 +338,7 @@ public class ClubDAO implements IClubDAO {
 	}
 	
 	public void deleteclubmember(ClubVO cvo) {
-		String sql = "update cyclemember set mcode=0, mjoin=0 where (mcode=?) and (mid=?)";
+		String sql = "update cyclemember set mcode=null, mjoin=0 where (mcode=?) and (mid=?)";
 		Connection con = null;
 		try {
 			con = getConnection();
