@@ -47,9 +47,9 @@ public class CycleClubServlet extends HttpServlet {
 		} else if("update".equals(action)){
 			// 모임 수정
 			request.setAttribute("next", "update");
-			String ccodestr = request.getParameter("ccode");
-			System.out.println(ccodestr); //detail에서 ccode넘어옴
-			int ccode = Integer.parseInt(ccodestr);
+			String ccode = request.getParameter("ccode");
+			//System.out.println(ccodestr); //detail에서 ccode넘어옴
+			
 			ClubVO cvo = service.selectClub(ccode);
 			request.setAttribute("cvo", cvo); //cvo넘겨줌
 
@@ -92,9 +92,8 @@ public class CycleClubServlet extends HttpServlet {
 			// 모임 상세내용
 			HttpSession session=request.getSession(true);
 			String mid = (String)session.getAttribute("mid");
-			String ccodestr = request.getParameter("ccode");
-			int ccode = Integer.parseInt(ccodestr);
-			ClubVO cvo = service.selectClub(ccode);
+			String ccodestr = request.getParameter("ccode");		
+			ClubVO cvo = service.selectClub(ccodestr);
 			request.setAttribute("cvo", cvo);
 			request.setAttribute("next", "update");
 			ArrayList<MemberVO> mlist = service.joinClubList();
@@ -107,9 +106,9 @@ public class CycleClubServlet extends HttpServlet {
 			// 모임 참가
 			String mid = request.getParameter("mid");
 			String ccodestr = request.getParameter("ccode");
-			int ccode = Integer.parseInt(ccodestr);
+	
 			MemberVO mvo = service.selectMember(mid);
-			ClubVO cvo = service.selectClub(ccode);
+			ClubVO cvo = service.selectClub(ccodestr);
 			service.joinClub(mvo, cvo);
 			request.getSession().setAttribute("next", "clublist");
 			response.sendRedirect("club.do?action=clublist");
@@ -183,12 +182,9 @@ public class CycleClubServlet extends HttpServlet {
 		} else if("Ajoin".equals(action)){
 			// 모임 참가
 			String mid = request.getParameter("mid");
-			String ccodestr = request.getParameter("ccode");
-			int ccode = Integer.parseInt(ccodestr);
-			System.out.println(mid);
-			System.out.println(ccodestr);
+			String ccodestr = request.getParameter("ccode");			
 			MemberVO mvo = service.selectMember(mid);
-			ClubVO cvo = service.selectClub(ccode);
+			ClubVO cvo = service.selectClub(ccodestr);
 			service.joinClub(mvo, cvo);
 			response.getWriter().println("모임이 참여 되었습니다.");
 		} else if("Aunjoin".equals(action)){
