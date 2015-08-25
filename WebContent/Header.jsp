@@ -26,7 +26,8 @@
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="/CycleClub/cycleclub/club/club.do?action=clublist">Clublist</a></li>
-						<li><a href="/CycleClub/cycleclub/member/member.do?action=login">Login</a></li>
+						<li><a href=${sessionScope.mid==null?"/CycleClub/cycleclub/member/member.do?action=login":"/CycleClub/cycleclub/club/club.do?action=logout"}>
+										${sessionScope.mid==null?"Login":"Logout"}</a></li>
 						<li><a href="/CycleClub/cycleclub/member/member.do?action=join">Join</a></li>
 					</ul>
 				</div>

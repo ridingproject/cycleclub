@@ -120,6 +120,10 @@ public class CycleClubServlet extends HttpServlet {
 			service.unjoinClub(mvo);
 			response.sendRedirect("club.do?action=clublist");
 			return;
+		} else if("logout".equals(action)){
+			request.getSession().invalidate();
+			response.sendRedirect("/CycleClub/cycleclub/member/member.do?action=login");
+			return;
 		} else{
 
 			request.setAttribute("message", "에러페이지입니다.");
