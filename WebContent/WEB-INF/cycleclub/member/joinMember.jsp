@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,7 +73,7 @@
   
   </script>
 	<%@ include file="/Header.jsp"%>
-	<br><br><br>
+	<br>
 	<input id="mm" value="${msg}" type="hidden">
 
 	<script>
@@ -83,12 +82,11 @@
          alert("" + dd + "");
       }</script>
 
-	<div class="container">
+	<div class="container" style="width: 900px; vertical-align: middle;">
 		<!-- Contact Form -->
 		<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
 		<div class="row">
 			<div class="col-md-8">
-				<h1>타요타요 회원가입</h1>
 				<form action="member.do" method="post" id="frm" name="frm"
 					class="bs-example bs-example-form" onSubmit="return loginCheck();"
 					data-example-id="simple-input-groups"">
@@ -128,11 +126,11 @@
 								id="phone" name="phone" required
 								data-validation-required-message="Please enter your Phone number.">
 						</div>
-					</div>
+					</div><br>
 
 					<div id="success"></div>
 					<!-- For success/fail messages -->
-					<button type="submit" class="btn btn-primary">Join</button>
+					<button type="submit" class="btn btn-primary" style="margin-left: 110px">Join</button>
 					<button type="reset" class="btn btn-default"
 						onclick="location.href='/CycleClub/cycleclub/member/member.do?action=login'">Cancel</button>
 				</form>
@@ -140,7 +138,7 @@
 
 		</div>
 		<!-- /.row -->
-	</div>
+	</div><br><br>
 	<!-- /.container -->
 	
 	<!-- jQuery -->

@@ -72,18 +72,22 @@
 	<div class=tayoheader>
 		<%@ include file="/Header.jsp"%>
 	</div>
-	<div class=notmember>
-		<c:if test="${empty sessionScope.mid}">
+	
+
+<c:if test="${empty sessionScope.mid}">
+<div style="margin-left: 60px">
 			<br>
 			<br>
 			<br>
 회원에게만 제공되는 서비스입니다.
 <br>
  [<a href="/CycleClub/cycleclub/member/member.do?action=login"> 여 기
-			</a>]를 클릭하여 로그인후 이용하실 수 있습니다.
+			</a>]를 클릭하여 로그인후 이용하실 수 있습니다. <br><br><br><br><br><br>
+</div>
 </c:if>
-	</div>
-	<!-- Main Content -->
+
+	
+	<!-- <!-- Main Content -->
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -132,14 +136,14 @@
 					</p>
 				</div>
 				<hr>
-				<!-- Pager -->
+				Pager
 				<ul class="pager">
 					<li class="next"><a href="#">Older Posts &rarr;</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-
+ -->
 	<hr>
 
 

@@ -43,11 +43,8 @@
 		}
 	</script>
 	<%@ include file="/Header.jsp"%>
-	<br>
 	<div class="container">
 		<!-- 컨테이너 -->
-		<h1>모임 리스트</h1>
-		<br>
 		<c:if test="${!empty sessionScope.mid}">
 			<form class="bs-example bs-example-form"
 				data-example-id="simple-input-groups">
@@ -92,14 +89,14 @@
 		</c:if>
 
 
-		<c:if test="${empty sessionScope.mid}">
+<c:if test="${empty sessionScope.mid}">
 			<br>
 			<br>
 			<br>
 회원에게만 제공되는 서비스입니다.
 <br>
  [<a href="/CycleClub/cycleclub/member/member.do?action=login"> 여 기
-			</a>]를 클릭하여 로그인후 이용하실 수 있습니다.
+			</a>]를 클릭하여 로그인후 이용하실 수 있습니다. <br><br><br><br><br><br>
 </c:if>
 
 

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -42,13 +41,12 @@
          alert("" + dd + "");
       }</script>
     <%@ include file="/Header.jsp"%>
-    <br><br><br>
-	<div class="container">
+    <br>
+	<div class="container" style="width: 900px; vertical-align: middle;">
 		<!-- Contact Form -->
 		<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
 		<div class="row">
 			<div class="col-md-8">
-				<h1>타요타요에 오신것을 환영합니다.</h1>
 				<form action="member.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups">
 				<input type="hidden" name="action" value="${next}">
 					<div class="control-group form-group">
@@ -65,19 +63,18 @@
 								class="form-control" id="mpw" name="mpw" required
 								data-validation-required-message="Please enter your PASSWORD.">
 						</div>
-					</div>
+					</div><br>
 
 					<div id="success"></div>
 					<!-- For success/fail messages -->
-					<button type="submit" class="btn btn-primary">Login</button>
+					<button type="submit" class="btn btn-primary" style="margin-left: 110px">Login</button>
 					<button type="reset" class="btn btn-default"
 			onclick="location.href='/CycleClub/cycleclub/member/member.do?action=join'">Join</button>
 				</form>
 			</div>
-
 		</div>
 		<!-- /.row -->
-	</div>
+	</div><br><br>
 	<!-- /.container -->
 	 <!-- jQuery -->
 		<script
