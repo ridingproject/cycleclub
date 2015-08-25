@@ -141,7 +141,6 @@ public class CycleClubServlet extends HttpServlet {
 			// �뜲�씠�꽣 ���옣 泥섎━
 			ClubVO cvo = new ClubVO();
 
-			String ccode = request.getParameter("ccode");
 			String cname = request.getParameter("cname");
 			String cplace = request.getParameter("cplace");
 			String ctime = request.getParameter("ctime");
@@ -153,7 +152,7 @@ public class CycleClubServlet extends HttpServlet {
 			 * ctime = null; try { ctime = transFormat.parse(time); } catch
 			 * (ParseException e) {}
 			 */
-			cvo = new ClubVO(ccode, cname, cplace, ctime, mid);
+			cvo = new ClubVO(null, cname, cplace, ctime, mid);
 			service.insertClub(cvo);
 
 			response.sendRedirect("club.do?action=clublist");

@@ -106,6 +106,7 @@ public class ClubDAO implements IClubDAO {
 	public void insertClub(ClubVO cvo) {
 		String sql = "insert into cycleclub values(?,?,?,?,?)";
 		String sql1 = "select ifnull(max(ccode),0)+1 from cycleclub";
+		String sql2 = "update cyclemember set mcode=?,mjoin=? where mid=?";
 		Connection con = null;
 		String numSet=null;
 		try {
@@ -131,6 +132,13 @@ public class ClubDAO implements IClubDAO {
 			stmt.setString(4, cvo.getCtime());
 			stmt.setString(5, cvo.getMid());
 			stmt.executeUpdate();
+			
+			stmt = con.prepareStatement(sql2);
+			stmt.setString(1, numSet);
+			stmt.setString(2, "1");
+			stmt.setString(3, cvo.getMid());
+			stmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {
