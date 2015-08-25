@@ -38,7 +38,7 @@ public class ClubService implements IClubService {
 		return cdao.listClub();
 	}
 
-	public ClubVO selectClub(int ccode){
+	public ClubVO selectClub(String ccode){
 		return cdao.selectClub(ccode);
 	}
 	
