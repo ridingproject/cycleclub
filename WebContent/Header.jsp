@@ -19,7 +19,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand topnav" href="#">TayoTayo</a>
+					<a class="navbar-brand topnav" href="/CycleClub/cycleclub/club/club.do?action=clublist">TayoTayo</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
