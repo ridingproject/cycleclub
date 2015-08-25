@@ -1,15 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+
+
+<!-- Bootstrap Core CSS -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Custom CSS -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/landing-page.css"
+	rel="stylesheet">
+<!-- Custom Fonts -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<!-- jQuery -->
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<link
+	href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -30,84 +53,64 @@
 
 </head>
 <body>
-
+	<%@ include file="/Header.jsp"%>
+	<br>
+	<br>
+	<br>
 	<div class="container">
 
-		<!-- Static navbar -->
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Project name</a>
+		<h1>모임 수정</h1>
+		<form action="club.do" method="post"
+			class="bs-example bs-example-form"
+			data-example-id="simple-input-groups">
+
+			<input type="hidden" name="action" value="${next}">
+			<!-- update넘어옴 -->
+
+			<div class="control-group form-group">
+				<div class="controls">
+					<label>모임 이름</label> <input type="text" class="form-control"
+						id="cname" name="cname" value="${cvo.cname}" required
+						data-validation-required-message="Please enter your Name.">
+					<p class="help-block"></p>
 				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Contact</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-expanded="false">Dropdown
-								<span class="caret"></span>
-						</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li class="divider"></li>
-								<li class="dropdown-header">Nav header</li>
-								<li><a href="#">Separated link</a></li>
-								<li><a href="#">One more separated link</a></li>
-							</ul></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="./">Default <span
-								class="sr-only">(current)</span></a></li>
-						<li><a href="../navbar-static-top/">Static top</a></li>
-						<li><a href="../navbar-fixed-top/">Fixed top</a></li>
-					</ul>
-				</div>
-				<!--/.nav-collapse -->
 			</div>
-			<!--/.container-fluid -->
-		</nav>
-	</div>
-	<!-- 컨테이너 -->
 
-  <form action="club.do" method="post" class="bs-example bs-example-form" data-example-id="simple-input-groups">
-    
-    <input type="hidden" name="action" value="${next}"><!-- update넘어옴 -->
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">모임이름</span>
-      <input type="text" class="form-control" name="cname" id="cname" value="${cvo.cname }" aria-describedby="basic-addon1">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">모임장소</span>
-      <input type="text" class="form-control" name="cplace" id="cplace" value="${cvo.cplace }" aria-describedby="basic-addon1">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">모임시간</span>
-      <input type="text" class="form-control" name="ctime" id="ctime" value="${cvo.ctime }" aria-describedby="basic-addon1">
-    </div>
-    <br>
-     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">작성자</span>
-      <input type="text" readonly class="form-control" name="mid" id="mid" value="${cvo.mid }" aria-describedby="basic-addon1">
-    </div>
-    <br><br>
-    <button type="submit" class="btn btn-default">수정</button>
-	<button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">취소</button>
-  </form>
+			<div class="control-group form-group">
+				<div class="controls">
+					<label>모임 장소</label> <input type="text" class="form-control"
+						id="cplace" name="cplace" value="${cvo.cplace}" required
+						data-validation-required-message="Please enter your Name.">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			
+						<div class="control-group form-group">
+				<div class="controls">
+					<label>모임 시간</label> <input type="text" class="form-control"
+						id="ctime" name="ctime" value="${cvo.ctime}" required
+						data-validation-required-message="Please enter your Name.">
+					<p class="help-block"></p>
+				</div>
+			</div>
+
+			<div class="control-group form-group">
+				<div class="controls">
+					<label>주최자</label> <input type="text" class="form-control"
+						id="mid" name="mid" value="${cvo.mid}" disable
+						data-validation-required-message="Please enter your Name.">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			
+			<br>
+			<button type="submit" class="btn btn-primary">수정</button>
+			<button type="button" class="btn btn-default"
+				onclick="javascript:history.back(-1)">취소</button>
+		</form>
 
 
-	<!--       Main component for a primary marketing message or call to action
+		<!--       Main component for a primary marketing message or call to action
       <div class="jumbotron">
         <h1>Navbar example</h1>
         <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
@@ -116,14 +119,15 @@
         </p>
       </div>-->
 
-	<!-- Bootstrap core JavaScript
+		<!-- Bootstrap core JavaScript
     ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="../../dist/js/bootstrap.min.js"></script>
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="../../dist/js/bootstrap.min.js"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+	</div>
 </body>
 <script type="text/javascript">
 var mid = document.getElementById('mid') ;

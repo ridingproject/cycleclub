@@ -2,15 +2,38 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+
+
+<!-- Bootstrap Core CSS -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Custom CSS -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/landing-page.css"
+	rel="stylesheet">
+<!-- Custom Fonts -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<!-- jQuery -->
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<link
+	href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    
+    
 <html>
 <head>
 <meta charset="utf-8">
@@ -30,56 +53,13 @@
 
 </head>
 <body>
-
+	
+	<%@ include file="/Header.jsp"%>
+	<br>
+	<br>
+	<br>
 	<div class="container">
-
-		<!-- Static navbar -->
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Project name</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Contact</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-expanded="false">Dropdown
-								<span class="caret"></span>
-						</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li class="divider"></li>
-								<li class="dropdown-header">Nav header</li>
-								<li><a href="#">Separated link</a></li>
-								<li><a href="#">One more separated link</a></li>
-							</ul></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="./">Default <span
-								class="sr-only">(current)</span></a></li>
-						<li><a href="../navbar-static-top/">Static top</a></li>
-						<li><a href="../navbar-fixed-top/">Fixed top</a></li>
-					</ul>
-				</div>
-				<!--/.nav-collapse -->
-			</div>
-			<!--/.container-fluid -->
-		</nav>
-	</div>
-	<!-- 컨테이너 -->
-<br><br>
-  <form class="bs-example bs-example-form" data-example-id="simple-input-groups">
+    <form class="bs-example bs-example-form" data-example-id="simple-input-groups">
     <input type="hidden" class="form-control" name="mid" id="mid">
     <input type="hidden" name="action" value="${next}">
     <input type="hidden" class="form-control" name="ccode" id="ccode">
@@ -136,5 +116,6 @@
 	<script src="../../dist/js/bootstrap.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+	</div>
 </body>
 </html>

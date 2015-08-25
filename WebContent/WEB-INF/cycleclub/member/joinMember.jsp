@@ -1,15 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	pageEncoding="UTF-8"%>
+
+
+<!-- Bootstrap Core CSS -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Custom CSS -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/landing-page.css"
+	rel="stylesheet">
+<!-- Custom Fonts -->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<!-- jQuery -->
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
 <script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<link
+	href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 
 <html>
 <head>
@@ -17,7 +37,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
+	<script type="text/javascript">
   	function loginCheck(){
   		var name = document.frm.mname.value;
   		var id = document.frm.mid.value;
@@ -57,45 +77,74 @@
   	}
   
   </script>
+	<%@ include file="/Header.jsp"%>
+	<br><br><br>
+	<input id="mm" value="${msg}" type="hidden">
 
-<input id="mm" value="${msg}" type="hidden">
- 
-   <script>
+	<script>
       var dd = document.getElementById("mm").value;
       if (dd != '') {
          alert("" + dd + "");
       }</script>
-<form action="member.do" method="post"  id ="frm" name="frm" class="bs-example bs-example-form" onSubmit="return loginCheck();" data-example-id="simple-input-groups" ">
-	<h1>타요타요 회원가입</h1>
-    <input type="hidden" name="action" value="${next}">
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">이름</span>
-      <input type="text" class="form-control" name="mname" id="mname" aria-describedby="basic-addon1" >
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">id</span>
-      <input type="text" class="form-control" name="mid" id="mid" aria-describedby="basic-addon1">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">비밀번호</span>
-      <input type="password" class="form-control" name="mpw" id="mpw" aria-describedby="basic-addon1">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">비밀번호 확인</span>
-      <input type="password" class="form-control" name="mpwR" id="mpwR" aria-describedby="basic-addon1">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">전화번호</span>
-      <input type="text" class="form-control" name="mphone" id="mphone" aria-describedby="basic-addon1" >
-    </div>
-    <br>
-    
-    <button type="submit" class="btn btn-default" >가입하기</button>
-    <button type="reset" class="btn btn-default" onclick="location.href='/CycleClub/cycleclub/member/member.do?action=login'">취소</button>
-  </form>
+
+	<div class="container">
+		<!-- Contact Form -->
+		<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+		<div class="row">
+			<div class="col-md-8">
+				<h1>타요타요 회원가입</h1>
+				<form action="member.do" method="post" id="frm" name="frm"
+					class="bs-example bs-example-form" onSubmit="return loginCheck();"
+					data-example-id="simple-input-groups"">
+					<input type="hidden" name="action" value="${next}">
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>이름</label> <input type="text" class="form-control"
+								id="mname" name="mname" required
+								data-validation-required-message="Please enter your Name.">
+							<p class="help-block"></p>
+						</div>
+					</div>
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>Id</label> <input type="text" class="form-control"
+								id="mid" name="mid" required
+								data-validation-required-message="Please enter your ID.">
+						</div>
+					</div>
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>Password</label> <input type="password"
+								class="form-control" id="mpw" name="mpw" required
+								data-validation-required-message="Please enter your PASSWORD.">
+						</div>
+					</div>
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>Password check</label> <input type="text"
+								class="form-control" id="mpwR" name="mpwR" required
+								data-validation-required-message="Please enter your PASSWORD CHECK.">
+						</div>
+					</div>
+					<div class="control-group form-group">
+						<div class="controls">
+							<label>Phone</label> <input type="text" class="form-control"
+								id="phone" name="phone" required
+								data-validation-required-message="Please enter your Phone number.">
+						</div>
+					</div>
+
+					<div id="success"></div>
+					<!-- For success/fail messages -->
+					<button type="submit" class="btn btn-primary">Join</button>
+					<button type="reset" class="btn btn-default"
+						onclick="location.href='/CycleClub/cycleclub/member/member.do?action=login'">Cancel</button>
+				</form>
+			</div>
+
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container -->
 </body>
 </html>
