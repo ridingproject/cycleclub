@@ -206,10 +206,12 @@ public class CycleClubServlet extends HttpServlet {
 			response.getWriter().print(jsonMsg);
 		} else if("Adelete".equals(action)){
 			// 모임 삭제
-			HttpSession session=request.getSession(true);
-			String mid = (String)session.getAttribute("mid");
-			String ccodestr = request.getParameter("ccode");
-			ClubVO cvo = new ClubVO(ccodestr,null,null,null,mid);
+//			HttpSession session=request.getSession(true);
+//			String mid = (String)session.getAttribute("mid");
+//			String ccodestr = request.getParameter("ccode");
+			String mid = request.getParameter("mid");
+			String ccode = request.getParameter("ccode");
+			ClubVO cvo = new ClubVO(ccode,null,null,null,mid);
 			service.deleteclubmember(cvo);
 			service.deleteClub(cvo);
 		}else if("Asave".equals(action)){
@@ -295,7 +297,14 @@ public class CycleClubServlet extends HttpServlet {
 				}else{
 					System.out.println("??");
 				}
-			}				
+			}
+		} else if ("AselectClub".equals(action)) {
+			String ccode = request.getParameter("ccode");
+			ClubVO cvo = service.selectClub(ccode);
+			Gson gson = new Gson();
+			String jsonStr = gson.toJson(cvo);
+			String jsonMsg = URLEncoder.encode(jsonStr, "UTF-8");
+			response.getWriter().println(jsonMsg);
 		}
 	}
 }

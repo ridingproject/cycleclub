@@ -20,7 +20,7 @@ public interface IClubDAO {
 
 	public java.util.ArrayList<ClubVO> listClub();
 
-	public ClubVO selectClub(int ccode);
+	public ClubVO selectClub(String ccode);
 	
 	public MemberVO selectMember(String mid);
 

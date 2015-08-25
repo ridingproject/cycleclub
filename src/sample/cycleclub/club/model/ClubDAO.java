@@ -61,12 +61,11 @@ public class ClubDAO implements IClubDAO {
 	public void deleteClub(ClubVO cvo) {
 		Connection con=null;
 		//ClubVO club = new ClubVO();
-		String sql = "delete from cycleclub where (ccode=?) and (mid=?)"; //"delete from cycleclub where (ccode ,mid) values(?,?)";
+		String sql = "delete from cycleclub where mid=?"; //"delete from cycleclub where (ccode ,mid) values(?,?)";
 		try{
 			con= getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, cvo.getCcode());
-			pstmt.setString(2, cvo.getMid());
+			pstmt.setString(1, cvo.getMid());
 			pstmt.executeUpdate();
 			
 		}catch(SQLException e){
