@@ -35,9 +35,7 @@
 <body>
 
 	<%@ include file="/Header.jsp"%>
-	<br>
-	<br>
-	<br>
+
 	<div class="container">
 		<form class="bs-example bs-example-form"
 			data-example-id="simple-input-groups">
@@ -80,18 +78,18 @@
 
 			<button type="submit" class="btn btn-default">목록</button>
 		</form>
-	</div>
+	</div><br><br>
 	
-	<!-- jQuery -->
+<!-- jQuery -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/jquery.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/jquery.js"></script>
 
 		<!-- Bootstrap Core JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/bootstrap.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 		<!-- Custom Theme JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/clean-blog.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/clean-blog.min.js"></script>
 </body>
 </html>

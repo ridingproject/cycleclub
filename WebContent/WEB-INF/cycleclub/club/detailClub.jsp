@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+ <%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -21,17 +21,30 @@
 	href="${pageContext.request.contextPath}/resources/cleanBoot/css/clean-blog.min.css"
 	rel="stylesheet">
 
-<!-- Custom Fonts -->
-<link
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic'
-	rel='stylesheet' type='text/css'>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
+<style type="text/css">
+@font-face {
+	font-family: "HU미드나잇120";
+	src:
+		url('${pageContext.request.contextPath}/resources/font/HU미드나잇120.eot');
+	src:
+		url('${pageContext.request.contextPath}/resources/font/HU미드나잇120.eot?#iefix')
+		format('embedded-opentype'),
+		url('${pageContext.request.contextPath}/resources/font/HU미드나잇120.woff) format('woff '),
+		url('${pageContext.request.contextPath}/resources/font/HU미드나잇120.ttf')
+		format('truetype');
+	src: local(※),
+		url('${pageContext.request.contextPath}/resources/font/HU미드나잇120.woff')
+		format('woff');
+}
 
+.container {
+	font-family: "HU미드나잇120";
+}
+
+.notmember {
+	font-family: "HU미드나잇120";
+}
+</style>
 </head>
 <body>
 	<script type="text/javascript">
@@ -55,8 +68,7 @@
 	</script>
 
 	<%@ include file="/Header.jsp"%>
-	<br>
-	<div class="container">
+	<div class="container" style="width: 900px">
 	<h1>모임 상세조회</h1>
 	<br>
 
@@ -85,10 +97,11 @@
 				<td align="center" width="76">주최자</td>
 				<td width="319">${cvo.mid}</td>
 			</tr>
+			
 		</table>
 		<c:if test="${cvo.mid eq mid}">
 			<button type="submit" class="btn btn-default">수정</button>
-		</c:if>
+		</c:if><br><br><br>
 		<%
 			int count = 0;
 		%>
@@ -121,14 +134,14 @@
 
 <!-- jQuery -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/jquery.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/jquery.js"></script>
 
 		<!-- Bootstrap Core JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/bootstrap.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 		<!-- Custom Theme JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/clean-blog.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/clean-blog.min.js"></script>
 </body>
 </html>

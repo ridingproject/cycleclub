@@ -87,20 +87,20 @@
 			<button type="submit" class="btn btn-primary">수정</button>
 			<button type="button" class="btn btn-default"
 				onclick="javascript:history.back(-1)">취소</button>
-		</form>
+		</form><br><br>
 
 	</div>
-	<!-- jQuery -->
+<!-- jQuery -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/jquery.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/jquery.js"></script>
 
 		<!-- Bootstrap Core JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/bootstrap.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 		<!-- Custom Theme JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/clean-blog.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/clean-blog.min.js"></script>
 </body>
 <script type="text/javascript">
 var mid = document.getElementById('mid') ;

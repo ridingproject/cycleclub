@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+ <%@ page language="java" contentType="text/html; charset=utf-8"
+   pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -71,11 +72,9 @@
 		}
 	</script>
 	<%@ include file="/Header.jsp"%>
-	<br>
-	<br>
-	<br>
-	<div class="container">
-	<h1>모임 등록</h1><br>
+
+	<div class="container" style="width: 1000px">
+	<h2>모임 등록</h2><br>
 		<c:if test="${!empty sessionScope.mid}">
 			<form action="club.do" method="post" name="frm"
 				class="bs-example bs-example-form"
@@ -227,7 +226,8 @@
 				<button type="submit" class="btn btn-primary">저장</button>
 				<button type="reset" class="btn btn-default"
 					onclick="location.href='/CycleClub/cycleclub/club/club.do?action=clublist'">취소</button>
-			</form>
+			</form><br>
+			<br>
 		</c:if>
 
 		<c:if test="${empty sessionScope.mid}">
@@ -243,14 +243,14 @@
 </div>
 <!-- jQuery -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/jquery.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/jquery.js"></script>
 
 		<!-- Bootstrap Core JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/bootstrap.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 		<!-- Custom Theme JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/clean-blog.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/clean-blog.min.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+ <%@ page language="java" contentType="text/html; charset=utf-8"
+   pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -13,12 +14,12 @@
 
 <!-- Bootstrap Core CSS -->
 <link
-	href="${pageContext.request.contextPath}/resources/cleanBoot/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link
-	href="${pageContext.request.contextPath}/resources/cleanBoot/css/clean-blog.min.css"
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/clean-blog.min.css"
 	rel="stylesheet">
 
 <!-- Custom Fonts -->
@@ -43,7 +44,7 @@
 		}
 	</script>
 	<%@ include file="/Header.jsp"%>
-	<div class="container">
+	<div class="container" style="width: 1000px">
 		<!-- 컨테이너 -->
 		<c:if test="${!empty sessionScope.mid}">
 			<form class="bs-example bs-example-form"
@@ -85,7 +86,7 @@
 				<input type="hidden" name="action" value="${next}">
 				<button type="submit" class="btn btn-primary">모임 등록</button>
 			</form>
-
+<br><br>
 		</c:if>
 
 
@@ -103,15 +104,15 @@
 
 		<!-- jQuery -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/jquery.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/jquery.js"></script>
 
 		<!-- Bootstrap Core JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/bootstrap.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 		<!-- Custom Theme JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/clean-blog.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/clean-blog.min.js"></script>
 
 	</div>
 </body>
