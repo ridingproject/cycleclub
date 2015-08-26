@@ -1,6 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=utf-8"
    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,7 @@
 								<td align="center"><a
 									href="club.do?action=detail&ccode=${clist.ccode}">${clist.cname}</a></td>
 								<td align="center">${clist.cplace}</td>
-								<td align="center">${clist.ctime}</td>
+								<td align="center"><c:out value="${fn:substring(clist.ctime, 0, 16)}"/></td>
 								<!-- <<c:forEach var="mlist" items="${mlist}">
 					<c:if test="${(clist.ccode eq mlist.mcode) and (mlist.mjoin eq 1)}">
 						<%i++;%>
