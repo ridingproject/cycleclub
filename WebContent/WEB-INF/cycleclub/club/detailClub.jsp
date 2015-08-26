@@ -130,7 +130,7 @@
 		<button type="button" class="btn btn-default"
 			onclick="location.href='/CycleClub/cycleclub/club/club.do?action=clublist'">목록으로</button>
 		<!-- javascript:history.back(-1)는 Backspace와 같은 것 (뒤로가기) -->
-	</form>
+	</form><br><br>
 	</div>
 
 <!-- jQuery -->
