@@ -68,11 +68,11 @@
 									href="club.do?action=detail&ccode=${clist.ccode}">${clist.cname}</a></td>
 								<td align="center">${clist.cplace}</td>
 								<td align="center"><c:out value="${fn:substring(clist.ctime, 0, 16)}"/></td>
-								<!-- <<c:forEach var="mlist" items="${mlist}">
-					<c:if test="${(clist.ccode eq mlist.mcode) and (mlist.mjoin eq 1)}">
-						<%i++;%>
-					</c:if>
-				</c:forEach>-->
+								<c:forEach var="mlist" items="${mlist}">
+									<c:if test="${(clist.ccode eq mlist.mcode) and (mlist.mjoin eq 1)}">
+										<%i++;%>
+									</c:if>
+								</c:forEach>
 								<td align="center"><a
 									href="club.do?action=joinlist&ccode=${clist.ccode}"><%=i%></a></td>
 								<!-- <td align="center"><a href="club.do?action=update&ccode=${clist.ccode}">[수정]</a>
