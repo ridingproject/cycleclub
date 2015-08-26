@@ -1,5 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,7 +92,7 @@
 			</tr>
 			<tr>
 				<td align="center" width="76">모임시간</td>
-				<td width="319">${cvo.ctime}</td>
+				<td width="319"><c:out value="${fn:substring(cvo.ctime, 0, 16)}"/></td>
 			</tr>
 			<tr>
 				<td align="center" width="76">주최자</td>
