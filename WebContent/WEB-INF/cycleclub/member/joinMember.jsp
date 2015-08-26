@@ -35,13 +35,13 @@
 <body>
 	<script type="text/javascript">
   	function loginCheck(){
-  		var name = document.frm.mname.value;
-  		var id = document.frm.mid.value;
+  		//var name = document.frm.mname.value;
+  		//var id = document.frm.mid.value;
   		var pw = document.frm.mpw.value;
   		var pwR = document.frm.mpwR.value;
-  		var phone = document.frm.mphone.value;
+  		//var phone = document.frm.mphone.value;
   		
-  		if((name.length==0)||name==""){
+  		/*if((name.length==0)||name==""){
   			alert("이름을 입력하세요.");
   			document.frm.mname.focus();
   			return false;
@@ -61,7 +61,7 @@
   			alert("전화번호를 입력하세요.");
   			document.frm.mphone.focus();
   			return false;
-  		}else if(pw!=pwR){
+  		}else */if(pw!=pwR){
   				alert("비밀번호가 다릅니다.");
   				document.frm.mpwR.value="";
   				return false;
@@ -116,7 +116,7 @@
 					</div>
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>Password check</label> <input type="text"
+							<label>Password check</label> <input type="password"
 								class="form-control" id="mpwR" name="mpwR" required
 								data-validation-required-message="Please enter your PASSWORD CHECK.">
 						</div>
