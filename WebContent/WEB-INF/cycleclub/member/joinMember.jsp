@@ -94,7 +94,7 @@
 					<input type="hidden" name="action" value="${next}">
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>이름</label> <input type="text" class="form-control"
+							<label>Name</label> <input type="text" class="form-control"
 								id="mname" name="mname" required
 								data-validation-required-message="Please enter your Name.">
 							<p class="help-block"></p>

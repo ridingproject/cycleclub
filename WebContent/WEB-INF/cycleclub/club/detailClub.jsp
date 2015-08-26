@@ -14,12 +14,12 @@
 
 <!-- Bootstrap Core CSS -->
 <link
-	href="${pageContext.request.contextPath}/resources/cleanBoot/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link
-	href="${pageContext.request.contextPath}/resources/cleanBoot/css/clean-blog.min.css"
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/clean-blog.min.css"
 	rel="stylesheet">
 
 <style type="text/css">
@@ -38,7 +38,7 @@
 		format('woff');
 }
 
-.container {
+.container .table .table-striped{
 	font-family: "HU미드나잇120";
 }
 
@@ -77,7 +77,7 @@
 		<input type="hidden" name="action" value="${next}"> <input
 			type="hidden" name="ccode" value="${cvo.ccode}">
 		<!-- 지우지마...update에 필요하다고ㅋㅋㅋ -->
-		<table border="1" width="800px" class="table table-striped">
+		<table width="800px" class="table table-striped">
 			<tr>
 				<td align="center" width="76">모임코드</td>
 				<td width="319">${cvo.ccode}</td>

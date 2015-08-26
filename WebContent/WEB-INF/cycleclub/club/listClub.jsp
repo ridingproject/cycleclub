@@ -50,7 +50,7 @@
 		<c:if test="${!empty sessionScope.mid}">
 			<form class="bs-example bs-example-form"
 				data-example-id="simple-input-groups">
-				<table class="table table-striped" border="1">
+				<table class="table table-striped">
 					<tr>
 						<td width="100" align="center">순 번</td>
 						<td width="200" align="center">모 임 명</td>
@@ -84,8 +84,8 @@
 
 
 			<form>
-				<input type="hidden" name="action" value="${next}">
-				<button type="submit" class="btn btn-primary">모임 등록</button>
+				<input type="hidden" name="action" value="${next}"><br><br>
+				<button type="submit" class="btn btn-primary" style="margin-left: 420px">모임 등록</button>
 			</form>
 <br><br>
 		</c:if>
