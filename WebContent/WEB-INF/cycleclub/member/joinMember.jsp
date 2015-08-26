@@ -13,12 +13,12 @@
 
 <!-- Bootstrap Core CSS -->
 <link
-	href="${pageContext.request.contextPath}/resources/cleanBoot/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link
-	href="${pageContext.request.contextPath}/resources/cleanBoot/css/clean-blog.min.css"
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/clean-blog.min.css"
 	rel="stylesheet">
 
 <!-- Custom Fonts -->
@@ -144,14 +144,14 @@
 	
 	<!-- jQuery -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/jquery.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/jquery.js"></script>
 
 		<!-- Bootstrap Core JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/bootstrap.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 		<!-- Custom Theme JavaScript -->
 		<script
-			src="${pageContext.request.contextPath}/resources/cleanBoot/js/clean-blog.min.js"></script>
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/clean-blog.min.js"></script>
 </body>
 </html>
