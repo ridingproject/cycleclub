@@ -12,7 +12,6 @@ public class ClubVO {
 	private String ccode;
 	private String cname;
 	private String cplace;
-//	private java.sql.Date ctime;
 	private String ctime;
 	private String mid;
 	

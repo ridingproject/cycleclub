@@ -28,15 +28,6 @@ public class ClubDAO implements IClubDAO {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			ResultSet rs = pstmt.executeQuery();
-			/*private String mcode;
-			private double mgpsx;
-			private double mgpsy;
-			private String mid;
-			private int mjoin;
-			private String mname;
-			private String mphone;
-			private String mpw;
-			private String regid;*/
 			while(rs.next()){
 				 String mgpsx = rs.getString("mgpsx");
 				 String mgpsy = rs.getString("mgpsy");
@@ -60,8 +51,8 @@ public class ClubDAO implements IClubDAO {
 
 	public void deleteClub(ClubVO cvo) {
 		Connection con=null;
-		//ClubVO club = new ClubVO();
-		String sql = "delete from cycleclub where (ccode=?) and (mid=?)"; //"delete from cycleclub where (ccode ,mid) values(?,?)";
+
+		String sql = "delete from cycleclub where (ccode=?) and (mid=?)"; 
 		try{
 			con= getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -326,7 +317,7 @@ public class ClubDAO implements IClubDAO {
 			con = getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, 0);
-			pstmt.setString(2, null);
+			pstmt.setString(2, "0000");
 			pstmt.setString(3, mvo.getMid());
 			pstmt.executeQuery();
 			

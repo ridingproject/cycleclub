@@ -61,7 +61,7 @@ public class MemberDAO implements IMemberDAO {
 				stmt.setDouble(5, 0);
 				stmt.setDouble(6, 0);
 				stmt.setString(7, "0");
-				stmt.setString(8, null);
+				stmt.setString(8, "0000");
 				stmt.setString(9, null);
 				stmt.executeUpdate();
 				return true;
